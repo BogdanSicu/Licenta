@@ -71,8 +71,14 @@ public class Workout_Fragment extends Fragment {
                 Intent inentExercitii = new Intent(getContext(), ExercicesActivity.class);
                 Bundle bundle = new Bundle();
                 if(workout_menu.getTabAt(0).isSelected()){
+                    if(listaAntrenamenteSala.get(position) == null) {
+                        return;
+                    }
                     bundle.putSerializable("listaExercitiiAntrenament", listaAntrenamenteSala.get(position));
                 }else{
+                    if(listaAntrenamenteAcasa.get(position) == null) {
+                        return;
+                    }
                     bundle.putSerializable("listaExercitiiAntrenament", listaAntrenamenteAcasa.get(position));
                 }
                 inentExercitii.putExtras(bundle);

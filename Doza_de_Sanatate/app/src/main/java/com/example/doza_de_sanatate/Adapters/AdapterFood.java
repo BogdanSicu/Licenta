@@ -26,14 +26,13 @@ public class AdapterFood extends ArrayAdapter<Mancare> {
     private int resourceID;
     private LayoutInflater inflater;
 
-    static class ViewHolder{
-        private ImageView adapterFoodImage;
-        private TextView adapterFoodName;
-        private TextView adapterFoodKcal;
-        private TextView adapterFoodCarb;
-        private TextView adapterFoodProtein;
-        private ConstraintLayout adapterFoodLayout;
-    }
+    private ConstraintLayout adapterFoodLayout;
+    private ImageView adapterFoodImage;
+    private TextView adapterFoodName;
+    private TextView adapterFoodKcal;
+    private TextView adapterFoodCarb;
+    private TextView adapterFoodProtein;
+
 
     public AdapterFood(@NonNull Context context, int resource, @NonNull List<Mancare> objects, LayoutInflater inflater) {
         super(context, resource, objects);
@@ -45,37 +44,38 @@ public class AdapterFood extends ArrayAdapter<Mancare> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        convertView = inflater.inflate(resourceID, parent, false);
 
-        AdapterFood.ViewHolder holder = new AdapterFood.ViewHolder();
-        holder.adapterFoodImage = (ImageView) convertView.findViewById(R.id.adapter_food_image);
-        holder.adapterFoodName = (TextView) convertView.findViewById(R.id.adapter_food_name);
-        holder.adapterFoodKcal =(TextView) convertView.findViewById(R.id.adapter_food_kcal);
-        holder.adapterFoodCarb =(TextView) convertView.findViewById(R.id.adapter_food_carb);
-        holder.adapterFoodProtein =(TextView) convertView.findViewById(R.id.adapter_food_protein);
-        holder.adapterFoodLayout = (ConstraintLayout) convertView.findViewById(R.id.adapter_food_layout);
-        convertView.setTag(holder);
+
+        View view = inflater.inflate(resourceID, parent, false);
+
+        adapterFoodImage = (ImageView) view.findViewById(R.id.adapter_food_image);
+        adapterFoodName = (TextView) view.findViewById(R.id.adapter_food_name);
+        adapterFoodKcal =(TextView) view.findViewById(R.id.adapter_food_kcal);
+        adapterFoodCarb =(TextView) view.findViewById(R.id.adapter_food_carb);
+        adapterFoodProtein =(TextView) view.findViewById(R.id.adapter_food_protein);
+
 
         if(getItem(position) != null){
-            holder.adapterFoodName.setText(getItem(position).getDenumire().toString());
+            adapterFoodName.setText(getItem(position).getDenumire().toString());
 
             int pozaGasita = myContext.getResources().getIdentifier(getItem(position).getPoza(), "drawable", myContext.getPackageName());
-            holder.adapterFoodImage.setImageResource(pozaGasita);
+            adapterFoodImage.setImageResource(pozaGasita);
 
-            holder.adapterFoodKcal.append(String.valueOf(getItem(position).getKcal()));
-            holder.adapterFoodCarb.append(String.valueOf(getItem(position).getCarbs()));
-            holder.adapterFoodProtein.append(String.valueOf(getItem(position).getProtein()));
+            adapterFoodKcal.append(String.valueOf(getItem(position).getKcal()));
+            adapterFoodCarb.append(String.valueOf(getItem(position).getCarbs()));
+            adapterFoodProtein.append(String.valueOf(getItem(position).getProtein()));
         }
         else{
-            holder.adapterFoodImage.setVisibility(View.INVISIBLE);
-            holder.adapterFoodProtein.setVisibility(View.INVISIBLE);
-            holder.adapterFoodCarb.setVisibility(View.INVISIBLE);
-            holder.adapterFoodKcal.setVisibility(View.INVISIBLE);
-            holder.adapterFoodName.setVisibility(View.INVISIBLE);
-            holder.adapterFoodLayout.setMinHeight(180);
-            holder.adapterFoodLayout.setMaxHeight(220);
+            adapterFoodImage.setVisibility(View.INVISIBLE);
+            adapterFoodProtein.setVisibility(View.INVISIBLE);
+            adapterFoodCarb.setVisibility(View.INVISIBLE);
+            adapterFoodKcal.setVisibility(View.INVISIBLE);
+            adapterFoodName.setVisibility(View.INVISIBLE);
+
+            adapterFoodLayout =  (ConstraintLayout) view.findViewById(R.id.adapter_food_layout);
+            adapterFoodLayout.setMaxHeight(290);
         }
 
-        return convertView;
+        return view;
     }
 }

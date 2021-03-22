@@ -70,7 +70,7 @@ public class AdapterWorkout extends ArrayAdapter<Antrenament> {
            adapterWorkoutTextView.setVisibility(View.INVISIBLE);
 
            adapterWorkoutLayout =  (ConstraintLayout) view.findViewById(R.id.adapter_workout_layout);
-           adapterWorkoutLayout.setMaxHeight(110);
+           adapterWorkoutLayout.setMaxHeight(160);
         }
 
         return view;
