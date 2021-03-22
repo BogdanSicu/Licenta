@@ -1,8 +1,9 @@
 package com.example.doza_de_sanatate.Classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Antrenament {
+public class Antrenament implements Serializable {
     private String denumire;
     private int dificultate;
     private String grupaDeMuschi;

@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/icon_launcher_doza_de_sanatate_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Doza_de_Sanatate">
-        <activity android:name=".ExercisesActivity"></activity>
+        <activity android:name=".ExercicesActivity"></activity>
         <activity android:name=".OpeningActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

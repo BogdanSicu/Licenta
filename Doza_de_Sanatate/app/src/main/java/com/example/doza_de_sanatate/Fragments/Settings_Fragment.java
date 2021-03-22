@@ -1,4 +1,4 @@
-package com.example.doza_de_sanatate;
+package com.example.doza_de_sanatate.Fragments;
 
 import android.os.Bundle;
 
@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 
 import com.example.doza_de_sanatate.Classes.Antrenament;
 import com.example.doza_de_sanatate.Classes.Exercitiu;
+import com.example.doza_de_sanatate.R;
 
 import java.util.ArrayList;
 

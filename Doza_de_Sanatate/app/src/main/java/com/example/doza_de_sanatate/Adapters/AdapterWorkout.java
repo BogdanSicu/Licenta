@@ -36,8 +36,6 @@ public class AdapterWorkout extends ArrayAdapter<Antrenament> {
     private RatingBar adapterWorkoutDificultate;
     private ConstraintLayout adapterWorkoutLayout;
 
-    private static final String TAG = "workoutListAdapter";
-
     public AdapterWorkout(@NonNull Context context, int resource, @NonNull ArrayList<Antrenament> objects, LayoutInflater inflater) {
         super(context, resource, objects);
         this.myContext = context;

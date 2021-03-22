@@ -1,13 +1,27 @@
 package com.example.doza_de_sanatate.Classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Exercitiu {
+public class Exercitiu implements Serializable {
     private String grupaDeMuschi;
     private String denumire;
     private String locatie;
     private ArrayList<String> pozeFemeie;
     private ArrayList<String> pozeBarbat;
+    private String iconitaFemeie;
+    private String iconitaBarbat;
+
+
+    public Exercitiu(String grupaDeMuschi, String denumire, String locatie, ArrayList<String> pozeFemeie, ArrayList<String> pozeBarbat, String iconitaFemeie, String iconitaBarbat) {
+        this.grupaDeMuschi = grupaDeMuschi;
+        this.denumire = denumire;
+        this.locatie = locatie;
+        this.pozeFemeie = pozeFemeie;
+        this.pozeBarbat = pozeBarbat;
+        this.iconitaFemeie = iconitaFemeie;
+        this.iconitaBarbat = iconitaBarbat;
+    }
 
     public Exercitiu() {
     }
@@ -58,6 +72,22 @@ public class Exercitiu {
 
     public void setPozeBarbat(ArrayList<String> pozeBarbat) {
         this.pozeBarbat = pozeBarbat;
+    }
+
+    public String getIconitaFemeie() {
+        return iconitaFemeie;
+    }
+
+    public void setIconitaFemeie(String iconitaFemeie) {
+        this.iconitaFemeie = iconitaFemeie;
+    }
+
+    public String getIconitaBarbat() {
+        return iconitaBarbat;
+    }
+
+    public void setIconitaBarbat(String iconitaBarbat) {
+        this.iconitaBarbat = iconitaBarbat;
     }
 
     @Override

@@ -8,17 +8,17 @@
 
     <fragment
         android:id="@+id/nutrition_Fragment"
-        android:name="com.example.doza_de_sanatate.Nutrition_Fragment"
+        android:name="com.example.doza_de_sanatate.Fragments.Nutrition_Fragment"
         android:label="fragment_training_"
         tools:layout="@layout/fragment_nutrition_" />
     <fragment
         android:id="@+id/workout_Fragment"
-        android:name="com.example.doza_de_sanatate.Workout_Fragment"
+        android:name="com.example.doza_de_sanatate.Fragments.Workout_Fragment"
         android:label="fragment_workout_"
         tools:layout="@layout/fragment_workout_" />
     <fragment
         android:id="@+id/settings_Fragment"
-        android:name="com.example.doza_de_sanatate.Settings_Fragment"
+        android:name="com.example.doza_de_sanatate.Fragments.Settings_Fragment"
         android:label="fragment_settings_"
         tools:layout="@layout/fragment_settings_" />
 </navigation>

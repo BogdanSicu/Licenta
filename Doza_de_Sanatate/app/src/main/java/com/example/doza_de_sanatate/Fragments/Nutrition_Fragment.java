@@ -1,4 +1,4 @@
-package com.example.doza_de_sanatate;
+package com.example.doza_de_sanatate.Fragments;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.doza_de_sanatate.R;
 
 public class Nutrition_Fragment extends Fragment {
     @Override

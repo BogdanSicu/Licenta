@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.doza_de_sanatate.Fragments.Nutrition_Fragment;
+import com.example.doza_de_sanatate.Fragments.Settings_Fragment;
+import com.example.doza_de_sanatate.Fragments.Workout_Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

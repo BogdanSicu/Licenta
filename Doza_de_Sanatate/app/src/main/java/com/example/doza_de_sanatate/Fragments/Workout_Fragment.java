@@ -1,5 +1,6 @@
-package com.example.doza_de_sanatate;
+package com.example.doza_de_sanatate.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,13 +8,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RadioGroup;
 
 import com.example.doza_de_sanatate.Adapters.AdapterWorkout;
 import com.example.doza_de_sanatate.Classes.Antrenament;
 import com.example.doza_de_sanatate.Classes.Exercitiu;
+import com.example.doza_de_sanatate.ExercicesActivity;
+import com.example.doza_de_sanatate.R;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -63,20 +65,42 @@ public class Workout_Fragment extends Fragment {
             }
         });
 
-
+        workout_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent inentExercitii = new Intent(getContext(), ExercicesActivity.class);
+                Bundle bundle = new Bundle();
+                if(workout_menu.getTabAt(0).isSelected()){
+                    bundle.putSerializable("listaExercitiiAntrenament", listaAntrenamenteSala.get(position));
+                }else{
+                    bundle.putSerializable("listaExercitiiAntrenament", listaAntrenamenteAcasa.get(position));
+                }
+                inentExercitii.putExtras(bundle);
+                startActivity(inentExercitii);
+            }
+        });
 
         return view;
     }
 
     void initList(){
-        Exercitiu piept = new Exercitiu("piept", "push", "acasa", null, null);
-        Exercitiu spate = new Exercitiu("spate", "push", "acasa", null, null);
-        Exercitiu picioare = new Exercitiu("picioare", "push", "acasa", null, null);
+        Exercitiu piept = new Exercitiu("piept", "push1", "acasa", null, null,"img_push_up_female", "img_push_up_male");
+        Exercitiu spate = new Exercitiu("spate", "push2", "acasa", null, null,"img_wide_grip_female", "img_wide_grip_male");
+        Exercitiu picioare = new Exercitiu("picioare", "push3", "acasa", null, null,"img_lunges_female", "img_lunges_male");
+        Exercitiu piept1 = new Exercitiu("piept", "push4", "acasa", null, null,"img_push_up_female", "img_push_up_male");
+        Exercitiu spate1 = new Exercitiu("spate", "push5", "acasa", null, null,"img_wide_grip_female", "img_wide_grip_male");
+        Exercitiu picioare1 = new Exercitiu("picioare", "push6", "acasa", null, null,"img_lunges_female", "img_lunges_male");
 
         ArrayList<Exercitiu> listaExercitii = new ArrayList<>();
         listaExercitii.add(piept);
         listaExercitii.add(spate);
         listaExercitii.add(picioare);
+        listaExercitii.add(piept1);
+        listaExercitii.add(spate1);
+        listaExercitii.add(picioare1);
+
+        Exercitiu exercitiuYes = null;
+        listaExercitii.add(exercitiuYes);
 
         Antrenament antrenament1 = new Antrenament("Strong Chest",1, "piept", listaExercitii, 10, 5 , "acasa", "", "workout_man_chest");
         Antrenament antrenament2 = new Antrenament("Strong Legs",1, "picioare", listaExercitii, 10, 5 , "sala", "", "workout_man_legs");
