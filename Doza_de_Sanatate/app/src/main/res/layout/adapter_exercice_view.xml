@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    app:layout_constraintWidth_percent="0.5">
+    android:id="@+id/adapter_exercice_layout">
 
 
     <ImageView

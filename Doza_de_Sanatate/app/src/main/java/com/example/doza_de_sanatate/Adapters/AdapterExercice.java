@@ -30,6 +30,7 @@ public class AdapterExercice extends ArrayAdapter<Exercitiu> {
     static class ViewHolder{
         private ImageView adapterExerciceImageView;
         private TextView adapterExerciceTextView;
+        private ConstraintLayout adapterExerciceLayout;
     }
 
     public AdapterExercice(@NonNull Context context, int resource, @NonNull List<Exercitiu> objects, LayoutInflater inflater) {
@@ -48,6 +49,7 @@ public class AdapterExercice extends ArrayAdapter<Exercitiu> {
         ViewHolder holder = new ViewHolder();
         holder.adapterExerciceImageView = (ImageView) convertView.findViewById(R.id.adapter_exercice_image);
         holder.adapterExerciceTextView = (TextView) convertView.findViewById(R.id.adapter_exercice_name);
+        holder.adapterExerciceLayout = (ConstraintLayout) convertView.findViewById(R.id.adapter_exercice_layout);
         convertView.setTag(holder);
 
         if(getItem(position) != null){
@@ -58,6 +60,7 @@ public class AdapterExercice extends ArrayAdapter<Exercitiu> {
         else{
             holder.adapterExerciceTextView.setVisibility(View.INVISIBLE);
             holder.adapterExerciceImageView.setVisibility(View.INVISIBLE);
+            holder.adapterExerciceLayout.setMinHeight(70);
         }
 
         return convertView;
