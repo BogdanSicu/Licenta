@@ -31,21 +31,4 @@ public class MancareService {
         asyncTaskRunner.executeAsync(callable, callback);
     }
 
-    public void insertMancare(Callback<Mancare> callback, Mancare mancare){
-        Callable<Mancare> callable = new Callable<Mancare>() {
-            @Override
-            public Mancare call() throws Exception {
-                if(mancare == null){
-                    return null;
-                }
-                long id = mancareDao.insertMancare(mancare);
-                if(id == -1){
-                    return null;
-                }
-                mancare.setMancareID(id);
-                return mancare;
-            }
-        };
-        asyncTaskRunner.executeAsync(callable, callback);
-    }
 }

@@ -15,5 +15,5 @@ public interface MancareDao {
     List<Mancare> getAllMancare();
 
     @Insert
-    long insertMancare(Mancare mancare);
+    void insertAllMancare(Mancare[] mancare);
 }
