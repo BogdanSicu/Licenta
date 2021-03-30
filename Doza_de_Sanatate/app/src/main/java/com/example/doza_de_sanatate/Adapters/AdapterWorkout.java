@@ -13,12 +13,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.doza_de_sanatate.RoomDataBase.Classes.Antrenament;
 import com.example.doza_de_sanatate.R;
+import com.example.doza_de_sanatate.RoomDataBase.Classes.AntrenamentCuExercitii;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class AdapterWorkout extends ArrayAdapter<Antrenament> {
+public class AdapterWorkout extends ArrayAdapter<AntrenamentCuExercitii> {
 
     private Context myContext;
     private int resourceID;
@@ -29,7 +29,7 @@ public class AdapterWorkout extends ArrayAdapter<Antrenament> {
     private RatingBar adapterWorkoutDificultate;
     private ConstraintLayout adapterWorkoutLayout;
 
-    public AdapterWorkout(@NonNull Context context, int resource, @NonNull ArrayList<Antrenament> objects, LayoutInflater inflater) {
+    public AdapterWorkout(@NonNull Context context, int resource, @NonNull List<AntrenamentCuExercitii> objects, LayoutInflater inflater) {
         super(context, resource, objects);
         this.myContext = context;
         this.resourceID = resource;
@@ -48,9 +48,9 @@ public class AdapterWorkout extends ArrayAdapter<Antrenament> {
 
 
         if(getItem(position) != null){
-            String denumire = getItem(position).getDenumire();
-            String poza = getItem(position).getPozaBarbat();
-            int dificultate = getItem(position).getDificultate();
+            String denumire = getItem(position).antrenament.getDenumireAntrenamentID();
+            String poza = getItem(position).antrenament.getPozaBarbat();
+            int dificultate = getItem(position).antrenament.getDificultate();
 
             adapterWorkoutTextView.setText(denumire.toString());
             int pozaGasita = myContext.getResources().getIdentifier(poza, "drawable", myContext.getPackageName());

@@ -1,103 +1,83 @@
 package com.example.doza_de_sanatate.RoomDataBase.Classes;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
+@Entity(tableName = "exercitiu")
 public class Exercitiu implements Serializable {
+
+    @NonNull
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "denumireExercitiuID")
+    private String denumireExercitiuID;
+
+    @ColumnInfo(name = "grupaDeMuschi")
     private String grupaDeMuschi;
-    private String denumire;
-    private String locatie;
-    private ArrayList<String> pozeFemeie;
-    private ArrayList<String> pozeBarbat;
+
+    @ColumnInfo(name = "pozeFemeie1")
+    private String pozeFemeie1;
+
+    @ColumnInfo(name = "pozeFemeie2")
+    private String pozeFemeie2;
+
+    @ColumnInfo(name = "pozeBarbat1")
+    private String pozeBarbat1;
+
+    @ColumnInfo(name = "pozeBarbat2")
+    private String pozeBarbat2;
+
+    @ColumnInfo(name = "iconitaFemeie")
     private String iconitaFemeie;
+
+    @ColumnInfo(name = "iconitaBarbat")
     private String iconitaBarbat;
 
-
-    public Exercitiu(String grupaDeMuschi, String denumire, String locatie, ArrayList<String> pozeFemeie, ArrayList<String> pozeBarbat, String iconitaFemeie, String iconitaBarbat) {
+    public Exercitiu(String denumireExercitiuID, String grupaDeMuschi, String pozeFemeie1, String pozeFemeie2, String pozeBarbat1, String pozeBarbat2, String iconitaFemeie, String iconitaBarbat) {
+        this.denumireExercitiuID = denumireExercitiuID;
         this.grupaDeMuschi = grupaDeMuschi;
-        this.denumire = denumire;
-        this.locatie = locatie;
-        this.pozeFemeie = pozeFemeie;
-        this.pozeBarbat = pozeBarbat;
+        this.pozeFemeie1 = pozeFemeie1;
+        this.pozeFemeie2 = pozeFemeie2;
+        this.pozeBarbat1 = pozeBarbat1;
+        this.pozeBarbat2 = pozeBarbat2;
         this.iconitaFemeie = iconitaFemeie;
         this.iconitaBarbat = iconitaBarbat;
     }
 
-    public Exercitiu() {
-    }
-
-    public Exercitiu(String grupaDeMuschi, String denumire, String locatie, ArrayList<String> pozeFemeie, ArrayList<String> pozeBarbat) {
-        this.grupaDeMuschi = grupaDeMuschi;
-        this.denumire = denumire;
-        this.locatie = locatie;
-        this.pozeFemeie = pozeFemeie;
-        this.pozeBarbat = pozeBarbat;
+    public String getDenumireExercitiuID() {
+        return denumireExercitiuID;
     }
 
     public String getGrupaDeMuschi() {
         return grupaDeMuschi;
     }
 
-    public void setGrupaDeMuschi(String grupaDeMuschi) {
-        this.grupaDeMuschi = grupaDeMuschi;
+    public String getPozeFemeie1() {
+        return pozeFemeie1;
     }
 
-    public String getDenumire() {
-        return denumire;
+    public String getPozeFemeie2() {
+        return pozeFemeie2;
     }
 
-    public void setDenumire(String denumire) {
-        this.denumire = denumire;
+    public String getPozeBarbat1() {
+        return pozeBarbat1;
     }
 
-    public String getLocatie() {
-        return locatie;
-    }
-
-    public void setLocatie(String locatie) {
-        this.locatie = locatie;
-    }
-
-    public ArrayList<String> getPozeFemeie() {
-        return pozeFemeie;
-    }
-
-    public void setPozeFemeie(ArrayList<String> pozeFemeie) {
-        this.pozeFemeie = pozeFemeie;
-    }
-
-    public ArrayList<String> getPozeBarbat() {
-        return pozeBarbat;
-    }
-
-    public void setPozeBarbat(ArrayList<String> pozeBarbat) {
-        this.pozeBarbat = pozeBarbat;
+    public String getPozeBarbat2() {
+        return pozeBarbat2;
     }
 
     public String getIconitaFemeie() {
         return iconitaFemeie;
     }
 
-    public void setIconitaFemeie(String iconitaFemeie) {
-        this.iconitaFemeie = iconitaFemeie;
-    }
-
     public String getIconitaBarbat() {
         return iconitaBarbat;
     }
 
-    public void setIconitaBarbat(String iconitaBarbat) {
-        this.iconitaBarbat = iconitaBarbat;
-    }
 
-    @Override
-    public String toString() {
-        return "Exercitiu{" +
-                "grupaDeMuschi='" + grupaDeMuschi + '\'' +
-                ", denumire='" + denumire + '\'' +
-                ", locatie='" + locatie + '\'' +
-                ", pozeFemeie=" + pozeFemeie +
-                ", pozeBarbat=" + pozeBarbat +
-                '}';
-    }
 }

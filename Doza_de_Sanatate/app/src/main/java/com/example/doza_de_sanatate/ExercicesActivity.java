@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import com.example.doza_de_sanatate.Adapters.AdapterExercice;
 import com.example.doza_de_sanatate.RoomDataBase.Classes.Antrenament;
+import com.example.doza_de_sanatate.RoomDataBase.Classes.Exercitiu;
+
+import java.util.List;
 
 public class ExercicesActivity extends AppCompatActivity {
     private View decorView;
@@ -38,12 +41,12 @@ public class ExercicesActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        Antrenament antrenament = (Antrenament) bundle.getSerializable("listaExercitiiAntrenament");
+        List<Exercitiu> listaExercitii = (List<Exercitiu>) bundle.getSerializable("listaExercitiiAntrenament");
 
         initComponents();
-        setTextInformation(antrenament);
+        setTextInformation();
 
-        adapterExercice = new AdapterExercice(this, R.layout.adapter_exercice_view, antrenament.getListaExercitii(), this.getLayoutInflater());
+        adapterExercice = new AdapterExercice(this, R.layout.adapter_exercice_view, listaExercitii, this.getLayoutInflater());
         listViewExercices.setAdapter(adapterExercice);
 
     }
@@ -56,10 +59,10 @@ public class ExercicesActivity extends AppCompatActivity {
     }
 
 
-    void setTextInformation(Antrenament antrenament){
-        seriesPerExerciceOutput.append(" "+String.valueOf(antrenament.getSerii()));
-        repsPerSeriesOutput.append(" "+String.valueOf(antrenament.getRepetari()));
-        totalExercicesOutput.append(" "+String.valueOf(antrenament.getSerii() * antrenament.getRepetari()));
+    void setTextInformation(){
+        seriesPerExerciceOutput.append(" ");
+        repsPerSeriesOutput.append(" ");
+        totalExercicesOutput.append(" ");
     }
 
     //pentru a scoate action bar

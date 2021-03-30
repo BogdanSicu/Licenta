@@ -50,7 +50,7 @@ public class AdapterExercice extends ArrayAdapter<Exercitiu> {
         convertView.setTag(holder);
 
         if(getItem(position) != null){
-            holder.adapterExerciceTextView.setText(getItem(position).getDenumire().toString());
+            holder.adapterExerciceTextView.setText(getItem(position).getDenumireExercitiuID().toString());
             int pozaGasita = myContext.getResources().getIdentifier(getItem(position).getIconitaBarbat(), "drawable", myContext.getPackageName());
             holder.adapterExerciceImageView.setImageResource(pozaGasita);
         }

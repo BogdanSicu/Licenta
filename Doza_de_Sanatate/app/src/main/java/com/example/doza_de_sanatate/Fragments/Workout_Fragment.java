@@ -12,35 +12,41 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.doza_de_sanatate.Adapters.AdapterWorkout;
-import com.example.doza_de_sanatate.RoomDataBase.Classes.Antrenament;
-import com.example.doza_de_sanatate.RoomDataBase.Classes.Exercitiu;
+import com.example.doza_de_sanatate.RoomDataBase.Classes.AntrenamentCuExercitii;
 import com.example.doza_de_sanatate.ExercicesActivity;
 import com.example.doza_de_sanatate.R;
+import com.example.doza_de_sanatate.RoomDataBase.Classes.Exercitiu;
+import com.example.doza_de_sanatate.RoomDataBase.Services.AntrenamenteCuExercitiiService;
+import com.example.doza_de_sanatate.asyncTask.Callback;
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Workout_Fragment extends Fragment {
-    private ArrayList<Antrenament> listaAntrenamente = new ArrayList<>();
-    private ArrayList<Antrenament> listaAntrenamenteAcasa = new ArrayList<>();
-    private ArrayList<Antrenament> listaAntrenamenteSala = new ArrayList<>();
+    private ArrayList<AntrenamentCuExercitii> listaAntrenamente = new ArrayList<>();
+    private ArrayList<AntrenamentCuExercitii> listaAntrenamenteAcasa = new ArrayList<>();
+    private ArrayList<AntrenamentCuExercitii> listaAntrenamenteSala = new ArrayList<>();
 
     private ListView workout_list;
     private AdapterWorkout adapterWorkout;
     private TabLayout workout_menu;
+
+    private AntrenamenteCuExercitiiService antrenamenteCuExercitiiService;
+    private LayoutInflater layoutInflater;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_workout_, container, false);
+        layoutInflater = inflater;
 
-        initList();
         initComponents(view);
+        antrenamenteCuExercitiiService.getAllAntrenamenteCuExercitii(getAllAntrenamenteCuExercitiiCallBack());
 
-        adapterWorkout = new AdapterWorkout(getContext().getApplicationContext(), R.layout.adapter_workout_view, listaAntrenamenteSala, inflater);
-        workout_list.setAdapter(adapterWorkout);
 
         workout_menu.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -70,16 +76,23 @@ public class Workout_Fragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent inentExercitii = new Intent(getContext(), ExercicesActivity.class);
                 Bundle bundle = new Bundle();
+                List<Exercitiu> listaExercitii = new ArrayList<>();
+
                 if(workout_menu.getTabAt(0).isSelected()){
                     if(listaAntrenamenteSala.get(position) == null) {
                         return;
                     }
-                    bundle.putSerializable("listaExercitiiAntrenament", listaAntrenamenteSala.get(position));
+
+                    listaExercitii.addAll(listaAntrenamenteSala.get(position).exercitii);
+                    bundle.putSerializable("listaExercitiiAntrenament", (Serializable) listaExercitii);
+
                 }else{
                     if(listaAntrenamenteAcasa.get(position) == null) {
                         return;
                     }
-                    bundle.putSerializable("listaExercitiiAntrenament", listaAntrenamenteAcasa.get(position));
+
+                    listaExercitii.addAll(listaAntrenamenteAcasa.get(position).exercitii);
+                    bundle.putSerializable("listaExercitiiAntrenament", (Serializable) listaExercitii);
                 }
                 inentExercitii.putExtras(bundle);
                 startActivity(inentExercitii);
@@ -89,57 +102,41 @@ public class Workout_Fragment extends Fragment {
         return view;
     }
 
-    void initList(){
-        Exercitiu piept = new Exercitiu("piept", "push1", "acasa", null, null,"img_push_up_female", "img_push_up_male");
-        Exercitiu spate = new Exercitiu("spate", "push2", "acasa", null, null,"img_wide_grip_female", "img_wide_grip_male");
-        Exercitiu picioare = new Exercitiu("picioare", "push3", "acasa", null, null,"img_lunges_female", "img_lunges_male");
-        Exercitiu piept1 = new Exercitiu("piept", "push4", "acasa", null, null,"img_push_up_female", "img_push_up_male");
-        Exercitiu spate1 = new Exercitiu("spate", "push5", "acasa", null, null,"img_wide_grip_female", "img_wide_grip_male");
-        Exercitiu picioare1 = new Exercitiu("picioare", "push6", "acasa", null, null,"img_lunges_female", "img_lunges_male");
 
-        ArrayList<Exercitiu> listaExercitii = new ArrayList<>();
-        listaExercitii.add(piept);
-        listaExercitii.add(spate);
-        listaExercitii.add(picioare);
-        listaExercitii.add(piept1);
-        listaExercitii.add(spate1);
-        listaExercitii.add(picioare1);
-
-        Exercitiu exercitiuYes = null;
-        listaExercitii.add(exercitiuYes);
-
-        Antrenament antrenament1 = new Antrenament("Strong Chest",1, "piept", listaExercitii, 10, 5 , "acasa", "", "workout_man_chest");
-        Antrenament antrenament2 = new Antrenament("Strong Legs",1, "picioare", listaExercitii, 10, 5 , "sala", "", "workout_man_legs");
-        Antrenament antrenament3 = new Antrenament("Strong Legs",1, "picioare", listaExercitii, 10, 5 , "acasa", "", "workout_man_legs");
-        Antrenament yes = null;
-        listaAntrenamente.add(antrenament1);
-        listaAntrenamente.add(antrenament1);
-        listaAntrenamente.add(antrenament2);
-        listaAntrenamente.add(antrenament2);
-        listaAntrenamente.add(antrenament2);
-        listaAntrenamente.add(antrenament1);
-        listaAntrenamente.add(antrenament3);
-        listaAntrenamente.add(antrenament3);
-        listaAntrenamente.add(antrenament1);
-
-
-        for (Antrenament antrenament: listaAntrenamente) {
-            if(antrenament.getLocatie().equals("acasa")){
-                listaAntrenamenteAcasa.add(antrenament);
-            }else{
-                listaAntrenamenteSala.add(antrenament);
-            }
-        }
-        listaAntrenamenteSala.add(yes);
-        listaAntrenamenteAcasa.add(yes);
-
-
-
-    }
 
     void initComponents(View view){
         workout_list = view.findViewById(R.id.workout_list_fragment);
         workout_menu = view.findViewById(R.id.fragment_workout_menu);
+        antrenamenteCuExercitiiService = new AntrenamenteCuExercitiiService(getContext());
+    }
+
+    private Callback<List<AntrenamentCuExercitii>> getAllAntrenamenteCuExercitiiCallBack(){
+        return new Callback<List<AntrenamentCuExercitii>>() {
+            @Override
+            public void runResultOnUiThread(List<AntrenamentCuExercitii> result) {
+                if(result != null){
+                    listaAntrenamente.clear();
+                    listaAntrenamente.addAll(result);
+
+                    for (AntrenamentCuExercitii element: listaAntrenamente) {
+                        if(element.antrenament.getLocatie().equals("acasa")){
+                            listaAntrenamenteAcasa.add(element);
+                        }
+                        else{
+                            listaAntrenamenteSala.add(element);
+                        }
+                    }
+                    listaAntrenamenteAcasa.add(null);
+                    listaAntrenamenteSala.add(null);
+                    resetAdapterMancare();
+                }
+            }
+        };
+    }
+
+    private void resetAdapterMancare(){
+        adapterWorkout = new AdapterWorkout(getContext().getApplicationContext(), R.layout.adapter_workout_view, listaAntrenamenteSala, layoutInflater);
+        workout_list.setAdapter(adapterWorkout);
     }
 
 }

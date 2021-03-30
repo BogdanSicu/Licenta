@@ -9,14 +9,24 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.doza_de_sanatate.RoomDataBase.Classes.Antrenament;
+import com.example.doza_de_sanatate.RoomDataBase.Classes.AntrenamentExercitiuCrossRef;
+import com.example.doza_de_sanatate.RoomDataBase.Classes.Exercitiu;
 import com.example.doza_de_sanatate.RoomDataBase.Classes.Mancare;
+import com.example.doza_de_sanatate.RoomDataBase.Dao.AntrenamentDao;
+import com.example.doza_de_sanatate.RoomDataBase.Dao.AntrenamentExercitiuCrossRefDao;
+import com.example.doza_de_sanatate.RoomDataBase.Dao.ExercitiuDao;
 import com.example.doza_de_sanatate.RoomDataBase.Dao.MancareDao;
+import com.example.doza_de_sanatate.RoomDataBase.PrePopulare.ListaAntrenamentExercitiuCrossRef;
+import com.example.doza_de_sanatate.RoomDataBase.PrePopulare.ListaAntrenamente;
+import com.example.doza_de_sanatate.RoomDataBase.PrePopulare.ListaExercitii;
 import com.example.doza_de_sanatate.RoomDataBase.PrePopulare.ListaMancare;
 import com.example.doza_de_sanatate.asyncTask.AppExecutor;
 
 import java.util.concurrent.Executor;
 
-@Database(entities = {Mancare.class}, exportSchema = false, version = 1)
+@Database(entities = {Mancare.class, Exercitiu.class, Antrenament.class, AntrenamentExercitiuCrossRef.class},
+        exportSchema = false, version = 2)
 public abstract class LocalDataBaseManager extends RoomDatabase {
 
     private static final String denumireBD = "Fitness at home DB";
@@ -39,6 +49,18 @@ public abstract class LocalDataBaseManager extends RoomDatabase {
                                                     getDataBaseInstance(applicationContext)
                                                             .getMancareDao()
                                                             .insertAllMancare(ListaMancare.populateMancareData());
+
+                                                    getDataBaseInstance(applicationContext)
+                                                            .getAntrenamentDao()
+                                                            .insertAllAntrenamente(ListaAntrenamente.populatieAntrenamenteData());
+
+                                                    getDataBaseInstance(applicationContext)
+                                                            .getExercitiuDao()
+                                                            .insertAllExercitii(ListaExercitii.populatieExercitiiData());
+
+                                                    getDataBaseInstance(applicationContext)
+                                                            .getAntrenamentExercitiuCorssRefDao()
+                                                            .insertAllAntremanenteCuExercitii(ListaAntrenamentExercitiuCrossRef.populatieAntrenamentExercitiuCrossRefData());
                                                 }
                                             });
                                 }
@@ -51,4 +73,7 @@ public abstract class LocalDataBaseManager extends RoomDatabase {
     }
 
     public abstract MancareDao getMancareDao();
+    public abstract AntrenamentDao getAntrenamentDao();
+    public abstract ExercitiuDao getExercitiuDao();
+    public abstract AntrenamentExercitiuCrossRefDao getAntrenamentExercitiuCorssRefDao();
 }
