@@ -12,13 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.doza_de_sanatate.Classes.Mancare;
+import com.example.doza_de_sanatate.RoomDataBase.Classes.Mancare;
 import com.example.doza_de_sanatate.R;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
-import java.util.zip.Inflater;
 
 public class AdapterFood extends ArrayAdapter<Mancare> {
 

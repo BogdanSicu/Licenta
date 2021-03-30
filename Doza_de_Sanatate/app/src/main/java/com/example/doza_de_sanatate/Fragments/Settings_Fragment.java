@@ -8,14 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.RadioGroup;
 
-import com.example.doza_de_sanatate.Classes.Antrenament;
-import com.example.doza_de_sanatate.Classes.Exercitiu;
+import com.example.doza_de_sanatate.RoomDataBase.Classes.Antrenament;
+import com.example.doza_de_sanatate.RoomDataBase.Classes.Exercitiu;
 import com.example.doza_de_sanatate.R;
-
-import java.util.ArrayList;
 
 public class Settings_Fragment extends Fragment {
     @Override

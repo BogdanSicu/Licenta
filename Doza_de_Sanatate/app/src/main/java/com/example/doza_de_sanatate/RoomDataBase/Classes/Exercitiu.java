@@ -1,4 +1,4 @@
-package com.example.doza_de_sanatate.Classes;
+package com.example.doza_de_sanatate.RoomDataBase.Classes;
 
 import java.io.Serializable;
 import java.util.ArrayList;

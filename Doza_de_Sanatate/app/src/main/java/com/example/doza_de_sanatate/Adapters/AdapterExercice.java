@@ -6,18 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.doza_de_sanatate.Classes.Antrenament;
-import com.example.doza_de_sanatate.Classes.Exercitiu;
+import com.example.doza_de_sanatate.RoomDataBase.Classes.Antrenament;
+import com.example.doza_de_sanatate.RoomDataBase.Classes.Exercitiu;
 import com.example.doza_de_sanatate.R;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 

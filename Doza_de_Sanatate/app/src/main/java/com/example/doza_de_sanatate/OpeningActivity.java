@@ -2,6 +2,7 @@ package com.example.doza_de_sanatate;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.example.doza_de_sanatate.RoomDataBase.Classes.Mancare;
+import com.example.doza_de_sanatate.RoomDataBase.Services.MancareService;
+import com.example.doza_de_sanatate.asyncTask.Callback;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OpeningActivity extends AppCompatActivity {
     private View decorView;
@@ -42,13 +50,17 @@ public class OpeningActivity extends AppCompatActivity {
     private String preferinte_obiectiv;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opening);
 
+
         SharedPreferences preferinte = getSharedPreferences(aSmallPriceToPayForSalvation, MODE_PRIVATE);
         initPreferences(preferinte);
+
 
         //pentru a scoate action bar
         decorView = getWindow().getDecorView();
@@ -72,6 +84,7 @@ public class OpeningActivity extends AppCompatActivity {
 //                    startActivity(main);
 //                    finish();
 //                }
+
                 Intent main = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(main);
                 finish();
@@ -213,7 +226,6 @@ public class OpeningActivity extends AppCompatActivity {
         editor.apply();
     }
 
-
     //pentru a scoate action bar
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -243,4 +255,6 @@ public class OpeningActivity extends AppCompatActivity {
         input_greutate.onEditorAction(EditorInfo.IME_ACTION_DONE);
         input_inaltime.onEditorAction(EditorInfo.IME_ACTION_DONE);
     }
+
+
 }

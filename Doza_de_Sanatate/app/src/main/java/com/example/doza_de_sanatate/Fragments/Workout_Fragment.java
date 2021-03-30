@@ -12,8 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.doza_de_sanatate.Adapters.AdapterWorkout;
-import com.example.doza_de_sanatate.Classes.Antrenament;
-import com.example.doza_de_sanatate.Classes.Exercitiu;
+import com.example.doza_de_sanatate.RoomDataBase.Classes.Antrenament;
+import com.example.doza_de_sanatate.RoomDataBase.Classes.Exercitiu;
 import com.example.doza_de_sanatate.ExercicesActivity;
 import com.example.doza_de_sanatate.R;
 import com.google.android.material.tabs.TabLayout;

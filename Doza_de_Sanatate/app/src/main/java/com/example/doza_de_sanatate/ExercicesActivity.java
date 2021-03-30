@@ -9,8 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.doza_de_sanatate.Adapters.AdapterExercice;
-import com.example.doza_de_sanatate.Adapters.AdapterWorkout;
-import com.example.doza_de_sanatate.Classes.Antrenament;
+import com.example.doza_de_sanatate.RoomDataBase.Classes.Antrenament;
 
 public class ExercicesActivity extends AppCompatActivity {
     private View decorView;

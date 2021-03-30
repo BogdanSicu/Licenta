@@ -1,9 +1,6 @@
 package com.example.doza_de_sanatate.Adapters;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.doza_de_sanatate.Classes.Antrenament;
+import com.example.doza_de_sanatate.RoomDataBase.Classes.Antrenament;
 import com.example.doza_de_sanatate.R;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.List;
-import java.util.zip.Inflater;
 
 public class AdapterWorkout extends ArrayAdapter<Antrenament> {
 

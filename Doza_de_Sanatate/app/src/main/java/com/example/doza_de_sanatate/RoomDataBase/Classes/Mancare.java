@@ -1,18 +1,56 @@
-package com.example.doza_de_sanatate.Classes;
+package com.example.doza_de_sanatate.RoomDataBase.Classes;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity (tableName = "mancare")
 public class Mancare {
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "mancareID")
+    private long mancareID;
+
+    @ColumnInfo(name = "denumire")
     private String denumire;
+
+    @ColumnInfo(name = "poza")
     private String poza;
+
+    @ColumnInfo(name = "kcal")
     private int kcal;
+
+    @ColumnInfo(name = "carbs")
     private int carbs;
+
+    @ColumnInfo(name = "protein")
     private int protein;
 
+    public Mancare(long mancareID, String denumire, String poza, int kcal, int carbs, int protein) {
+        this.mancareID = mancareID;
+        this.denumire = denumire;
+        this.poza = poza;
+        this.kcal = kcal;
+        this.carbs = carbs;
+        this.protein = protein;
+    }
+
+    @Ignore
     public Mancare(String denumire, String poza, int kcal, int carbs, int protein) {
         this.denumire = denumire;
         this.poza = poza;
         this.kcal = kcal;
         this.carbs = carbs;
         this.protein = protein;
+    }
+
+    public long getMancareID() {
+        return mancareID;
+    }
+
+    public void setMancareID(long mancareID) {
+        this.mancareID = mancareID;
     }
 
     public String getDenumire() {
@@ -53,17 +91,5 @@ public class Mancare {
 
     public void setProtein(int protein) {
         this.protein = protein;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Mancare{");
-        sb.append("denumire='").append(denumire).append('\'');
-        sb.append(", poza='").append(poza).append('\'');
-        sb.append(", kcal=").append(kcal);
-        sb.append(", carbs=").append(carbs);
-        sb.append(", protein=").append(protein);
-        sb.append('}');
-        return sb.toString();
     }
 }
