@@ -78,4 +78,9 @@ public class AdapterFood extends ArrayAdapter<Mancare> {
 
         return view;
     }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return false;
+    }
 }
