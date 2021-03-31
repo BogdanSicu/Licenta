@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -49,7 +50,8 @@ public class OpeningActivity extends AppCompatActivity {
     private String preferinte_sport;
     private String preferinte_obiectiv;
 
-
+//  initializare baza de date
+    private MancareService mancareService;
 
 
     @Override
@@ -57,10 +59,11 @@ public class OpeningActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opening);
 
-
         SharedPreferences preferinte = getSharedPreferences(aSmallPriceToPayForSalvation, MODE_PRIVATE);
         initPreferences(preferinte);
 
+        mancareService = new MancareService(getApplicationContext());
+        mancareService.getAllMancare(getAllMancareCallBack());
 
         //pentru a scoate action bar
         decorView = getWindow().getDecorView();
@@ -256,5 +259,16 @@ public class OpeningActivity extends AppCompatActivity {
         input_inaltime.onEditorAction(EditorInfo.IME_ACTION_DONE);
     }
 
+
+    private Callback<List<Mancare>> getAllMancareCallBack(){
+        return new Callback<List<Mancare>>() {
+            @Override
+            public void runResultOnUiThread(List<Mancare> result) {
+                if(result != null){
+
+                }
+            }
+        };
+    }
 
 }

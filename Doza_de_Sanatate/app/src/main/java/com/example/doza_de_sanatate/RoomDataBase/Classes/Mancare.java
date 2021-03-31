@@ -22,12 +22,12 @@ public class Mancare {
     private int kcal;
 
     @ColumnInfo(name = "carbs")
-    private int carbs;
+    private double carbs;
 
     @ColumnInfo(name = "protein")
-    private int protein;
+    private double protein;
 
-    public Mancare(long mancareID, String denumire, String poza, int kcal, int carbs, int protein) {
+    public Mancare(long mancareID, String denumire, String poza, int kcal, double carbs, double protein) {
         this.mancareID = mancareID;
         this.denumire = denumire;
         this.poza = poza;
@@ -37,7 +37,7 @@ public class Mancare {
     }
 
     @Ignore
-    public Mancare(String denumire, String poza, int kcal, int carbs, int protein) {
+    public Mancare(String denumire, String poza, int kcal, double carbs, double protein) {
         this.denumire = denumire;
         this.poza = poza;
         this.kcal = kcal;
@@ -77,19 +77,19 @@ public class Mancare {
         this.kcal = kcal;
     }
 
-    public int getCarbs() {
+    public double getCarbs() {
         return carbs;
     }
 
-    public void setCarbs(int carbs) {
+    public void setCarbs(double carbs) {
         this.carbs = carbs;
     }
 
-    public int getProtein() {
+    public double getProtein() {
         return protein;
     }
 
-    public void setProtein(int protein) {
+    public void setProtein(double protein) {
         this.protein = protein;
     }
 }

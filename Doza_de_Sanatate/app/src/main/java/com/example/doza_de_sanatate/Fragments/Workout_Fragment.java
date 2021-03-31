@@ -116,6 +116,8 @@ public class Workout_Fragment extends Fragment {
             public void runResultOnUiThread(List<AntrenamentCuExercitii> result) {
                 if(result != null){
                     listaAntrenamente.clear();
+                    listaAntrenamenteAcasa.clear();
+                    listaAntrenamenteSala.clear();
                     listaAntrenamente.addAll(result);
 
                     for (AntrenamentCuExercitii element: listaAntrenamente) {

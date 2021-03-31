@@ -6,10 +6,7 @@ import com.example.doza_de_sanatate.RoomDataBase.Classes.AntrenamentExercitiuCro
 public class ListaAntrenamentExercitiuCrossRef {
     public static AntrenamentExercitiuCrossRef[] populatieAntrenamentExercitiuCrossRefData(){
         return new AntrenamentExercitiuCrossRef[]{
-                 new AntrenamentExercitiuCrossRef("Strong Legs1","flotari1" ),
-                 new AntrenamentExercitiuCrossRef("Strong Legs1","flotari2" ),
-                 new AntrenamentExercitiuCrossRef("Strong Legs1","flotari3" ),
-                 new AntrenamentExercitiuCrossRef("Strong Legs2","flotari1" )
+
         };
     }
 }
