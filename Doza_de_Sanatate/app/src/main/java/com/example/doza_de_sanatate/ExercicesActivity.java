@@ -42,6 +42,7 @@ public class ExercicesActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         List<Exercitiu> listaExercitii = (List<Exercitiu>) bundle.getSerializable("listaExercitiiAntrenament");
+        listaExercitii.add(null);
 
         initComponents();
         setTextInformation();

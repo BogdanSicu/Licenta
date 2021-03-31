@@ -14,6 +14,9 @@ public interface AntrenamentExercitiuCrossRefDao {
     @Insert
     void insertAllAntremanenteCuExercitii(AntrenamentExercitiuCrossRef[] antrenamentExercitiuCrossRefs);
 
+    @Insert
+    long insertAntrenamentCuExercitii(AntrenamentExercitiuCrossRef antrenamentExercitiuCrossRef);
+
     @Query("SELECT * FROM antrenament")
     List<AntrenamentCuExercitii> getAllAntrenamenteCuExercitii();
 }
