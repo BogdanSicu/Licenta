@@ -81,16 +81,16 @@ public class OpeningActivity extends AppCompatActivity {
         button_salveaza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if(checkInput()){
-//                    writePreferences(preferinte);
-//                    Intent main = new Intent(getApplicationContext(), MainActivity.class);
-//                    startActivity(main);
-//                    finish();
-//                }
+                if(checkInput()){
+                    writePreferences(preferinte);
+                    Intent main = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(main);
+                    finish();
+                }
 
-                Intent main = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(main);
-                finish();
+//                Intent main = new Intent(getApplicationContext(), MainActivity.class);
+//                startActivity(main);
+//                finish();
             }
         });
 

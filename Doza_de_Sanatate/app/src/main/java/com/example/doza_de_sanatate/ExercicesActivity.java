@@ -2,7 +2,9 @@ package com.example.doza_de_sanatate;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -23,10 +25,17 @@ public class ExercicesActivity extends AppCompatActivity {
     private ListView listViewExercices;
     private AdapterExercice adapterExercice;
 
+    //    preferinte
+    private static final String aSmallPriceToPayForSalvation = "doza_de_sanatate_preferinte";
+    private static final String preferedGoal = "doza_de_sanatate_obiectiv";
+
+    private String preferinte_obiectiv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercices);
+
 
         //pentru a scoate action bar
         decorView = getWindow().getDecorView();
@@ -45,7 +54,9 @@ public class ExercicesActivity extends AppCompatActivity {
         listaExercitii.add(null);
 
         initComponents();
-        setTextInformation();
+
+        SharedPreferences preferinte = getSharedPreferences(aSmallPriceToPayForSalvation, MODE_PRIVATE);
+        setTextInformation(preferinte);
 
         adapterExercice = new AdapterExercice(this, R.layout.adapter_exercice_view, listaExercitii, this.getLayoutInflater());
         listViewExercices.setAdapter(adapterExercice);
@@ -60,10 +71,28 @@ public class ExercicesActivity extends AppCompatActivity {
     }
 
 
-    void setTextInformation(){
-        seriesPerExerciceOutput.append(" ");
-        repsPerSeriesOutput.append(" ");
-        totalExercicesOutput.append(" ");
+    @SuppressLint("SetTextI18n")
+    void setTextInformation(SharedPreferences preferinte){
+
+        preferinte_obiectiv = preferinte.getString(preferedGoal, "");
+
+        switch (preferinte_obiectiv) {
+            case "slabire":
+                seriesPerExerciceOutput.setText("Do 4 series for each exercise");
+                repsPerSeriesOutput.setText("Do 15 reps with lower weight for each series");
+                totalExercicesOutput.setText("Run for 30 minutes at the end of the workout ");
+                break;
+            case "mentinere":
+                seriesPerExerciceOutput.setText("Do 4 series for each exercise");
+                repsPerSeriesOutput.setText("Do 10 reps with moderate weight for each series");
+                totalExercicesOutput.setText("Run for 15 minutes at the end of the workout ");
+                break;
+            case "musculatura":
+                seriesPerExerciceOutput.setText("Do 4 series for each exercise");
+                repsPerSeriesOutput.setText("Start with 12 reps with lower weight for the 1st series. Lower the number of reps by 2 for each series while increasing the weight");
+                totalExercicesOutput.setText("Run for 10 minutes at the end of the workout ");
+                break;
+        }
     }
 
     //pentru a scoate action bar
@@ -83,5 +112,8 @@ public class ExercicesActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
     }
+
+
+
 
 }

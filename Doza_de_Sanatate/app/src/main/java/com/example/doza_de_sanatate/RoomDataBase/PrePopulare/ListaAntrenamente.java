@@ -15,7 +15,7 @@ public class ListaAntrenamente {
 
 //                Back
                 new Antrenament("Back Day", 2, "back", "gym", "img_adapter_antrenament_back_and_biceps_woman", "img_adapter_antrenament_back_and_biceps_man"),
-                new Antrenament("Strong Back",3, "back","acasa","img_adapter_antrenament_strong_back_woman", "img_adapter_antrenament_strong_back_man"),
+                new Antrenament("Strong Back",3, "back","gym","img_adapter_antrenament_strong_back_woman", "img_adapter_antrenament_strong_back_man"),
 
 //                Chest
                 new Antrenament("Chest at Home", 2, "chest", "acasa", "img_adapter_antrenament_chest_at_home_woman", "img_adapter_antrenament_chest_at_home_man"),

@@ -7,17 +7,31 @@
     tools:context=".ExercicesActivity"
     android:id="@+id/adapter_exercice_layout">
 
+    <TextView
+        android:id="@+id/exercices_you_should"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="You should:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 
     <TextView
         android:id="@+id/exercices_series"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="Series for each exercice:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/exercices_you_should"
         app:layout_constraintEnd_toEndOf="parent"/>
 
 
@@ -25,7 +39,8 @@
         android:id="@+id/exercices_reps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="Reps for each series:"
@@ -38,7 +53,8 @@
         android:id="@+id/exercices_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="Total reps for each exercice:"
