@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     private View decorView;
 
     private BottomNavigationView bottomNavigationMenu;
+    private Workout_Fragment workout_fragment = new Workout_Fragment();
+    private Nutrition_Fragment nutrition_fragment = new Nutrition_Fragment();
+    private Settings_Fragment settings_fragment = new Settings_Fragment();
 
 
     @Override
@@ -56,13 +59,13 @@ public class MainActivity extends AppCompatActivity {
 
                     switch(item.getItemId()){
                         case R.id.fragment_workout_menu:
-                            selectedFragment = new Workout_Fragment();
+                            selectedFragment = workout_fragment;
                             break;
                         case R.id.menu_nutrition:
-                            selectedFragment = new Nutrition_Fragment();
+                            selectedFragment = nutrition_fragment;
                             break;
                         case R.id.menu_settings:
-                            selectedFragment = new Settings_Fragment();
+                            selectedFragment = settings_fragment;
                             break;
                     }
 
@@ -105,11 +108,9 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if(bottomNavigationMenu.getSelectedItemId() == R.id.menu_nutrition || bottomNavigationMenu.getSelectedItemId() == R.id.menu_settings){
             bottomNavigationMenu.setSelectedItemId(R.id.fragment_workout_menu);
-            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_container,
-                    new Workout_Fragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_container, workout_fragment).commit();
         }else{
             super.onBackPressed();
         }
     }
-
 }
