@@ -137,8 +137,9 @@ public class Settings_Fragment extends Fragment {
                     editor.putInt(preferedWeight, preferinte_greutate);
 
                     editor.apply();
-
-                    Toast.makeText(getContext(), "Saved Changes", Toast.LENGTH_SHORT).show();
+                    if(!hasFocus){
+                        Toast.makeText(getContext(), "Saved Changes", Toast.LENGTH_SHORT).show();
+                    }
 
                 }catch (Exception e){
                     Toast.makeText(getContext(), "The weight must be a number", Toast.LENGTH_SHORT).show();
@@ -159,7 +160,9 @@ public class Settings_Fragment extends Fragment {
 
                     editor.apply();
 
-                    Toast.makeText(getContext(), "Saved Changes", Toast.LENGTH_SHORT).show();
+                    if(!hasFocus){
+                        Toast.makeText(getContext(), "Saved Changes", Toast.LENGTH_SHORT).show();
+                    }
 
                 }catch (Exception e){
                     Toast.makeText(getContext(), "The height must be a number", Toast.LENGTH_SHORT).show();
@@ -182,6 +185,8 @@ public class Settings_Fragment extends Fragment {
 
                 editor.putString(preferedSport, preferinte_sport);
                 editor.apply();
+
+                Toast.makeText(getContext(), "Saved Changes", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -200,6 +205,8 @@ public class Settings_Fragment extends Fragment {
 
                 editor.putString(preferedGoal, preferinte_obiectiv);
                 editor.apply();
+
+                Toast.makeText(getContext(), "Saved Changes", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -214,6 +221,8 @@ public class Settings_Fragment extends Fragment {
                 }
                 editor.putInt(preferedNavigationBar, preferinte_navigation_bar);
                 editor.apply();
+
+                Toast.makeText(getContext(), "Saved Changes", Toast.LENGTH_SHORT).show();
 
                 Intent main = new Intent(getContext(), MainActivity.class);
                 main.putExtra("setari?", 1);
