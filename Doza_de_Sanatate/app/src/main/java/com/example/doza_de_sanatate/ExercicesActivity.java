@@ -28,25 +28,15 @@ public class ExercicesActivity extends AppCompatActivity {
     //    preferinte
     private static final String aSmallPriceToPayForSalvation = "doza_de_sanatate_preferinte";
     private static final String preferedGoal = "doza_de_sanatate_obiectiv";
+    private static final String preferedNavigationBar = "doza_de_sanatate_navigation_bar";
 
+    private int preferinte_navigation_bar;
     private String preferinte_obiectiv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercices);
-
-
-        //pentru a scoate action bar
-        decorView = getWindow().getDecorView();
-        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener(){
-            @Override
-            public void onSystemUiVisibilityChange(int visibility) {
-                if(visibility == 0)
-                    decorView.setSystemUiVisibility(hideSystemBars());
-            }
-        });
-
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -56,7 +46,21 @@ public class ExercicesActivity extends AppCompatActivity {
         initComponents();
 
         SharedPreferences preferinte = getSharedPreferences(aSmallPriceToPayForSalvation, MODE_PRIVATE);
+        preferinte_navigation_bar = preferinte.getInt(preferedNavigationBar, 1);
         setTextInformation(preferinte);
+
+        if(preferinte_navigation_bar == 1){
+            //pentru a scoate action bar
+            decorView = getWindow().getDecorView();
+            decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener(){
+                @Override
+                public void onSystemUiVisibilityChange(int visibility) {
+                    if(visibility == 0)
+                        decorView.setSystemUiVisibility(hideSystemBars());
+                }
+            });
+        }
+
 
         adapterExercice = new AdapterExercice(this, R.layout.adapter_exercice_view, listaExercitii, this.getLayoutInflater());
         listViewExercices.setAdapter(adapterExercice);
@@ -99,7 +103,7 @@ public class ExercicesActivity extends AppCompatActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if(hasFocus){
+        if(hasFocus && preferinte_navigation_bar == 1){
             decorView.setSystemUiVisibility(hideSystemBars());
         }
     }

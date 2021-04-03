@@ -134,40 +134,40 @@ public class OpeningActivity extends AppCompatActivity {
 
         try{
             if(input_varsta.toString().equals("")){
-                Toast.makeText(getApplicationContext(), "Varsta trebuie sa fie un numar" + input_varsta.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "The age must be a number" + input_varsta.toString(), Toast.LENGTH_SHORT).show();
                 return false;
             }
             varsta = Integer.parseInt(String.valueOf(input_varsta.getText()));
         }catch (Exception e){
-            Toast.makeText(getApplicationContext(), "Varsta trebuie sa fie un numar", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "The age must be a number" , Toast.LENGTH_SHORT).show();
             return false;
         }
 
         try{
             if(input_inaltime.toString().equals("")){
-                Toast.makeText(getApplicationContext(), "Inaltimea trebuie sa fie un numar", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "The height must be a number", Toast.LENGTH_SHORT).show();
                 return false;
             }
             inaltime = Integer.parseInt(String.valueOf(input_inaltime.getText()));
         }catch (Exception e){
-            Toast.makeText(getApplicationContext(), "Inaltimea trebuie sa fie un numar", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "The height must be a number", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         try{
             if(input_greutate.toString().equals("")){
-                Toast.makeText(getApplicationContext(), "Greutatea trebuie sa fie un numar", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "The weight must be a number", Toast.LENGTH_SHORT).show();
                 return false;
             }
             greutate = Integer.parseInt(String.valueOf(input_greutate.getText()));
         }catch (Exception e){
-            Toast.makeText(getApplicationContext(), "Greutatea trebuie sa fie un numar", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "The weight must be a number", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         int idGenul = input_genul.getCheckedRadioButtonId();
         if(idGenul == -1){
-            Toast.makeText(getApplicationContext(), "Selecteaza genul", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Select your gender", Toast.LENGTH_SHORT).show();
             return false;
         }else {
             if(idGenul == R.id.sex_radio_barbat){
@@ -179,7 +179,7 @@ public class OpeningActivity extends AppCompatActivity {
 
         int idSport = input_sport_saptamana.getCheckedRadioButtonId();
         if(idSport == -1){
-            Toast.makeText(getApplicationContext(), "Selecteaza cate zile pe saptamana faci sport", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Select how many days you workout every week", Toast.LENGTH_SHORT).show();
             return false;
         }else{
             if(idGenul == R.id.sport_rar_radio){
@@ -193,7 +193,7 @@ public class OpeningActivity extends AppCompatActivity {
 
         int idObiectiv = input_obiectiv.getCheckedRadioButtonId();
         if(idObiectiv == -1){
-            Toast.makeText(getApplicationContext(), "Selecteaza un obiectiv", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Select your objective", Toast.LENGTH_SHORT).show();
             return false;
         }else{
             if(idObiectiv == R.id.obiectiv_slabire){

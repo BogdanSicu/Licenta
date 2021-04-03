@@ -5,12 +5,6 @@ import com.example.doza_de_sanatate.RoomDataBase.Classes.Mancare;
 public class ListaMancare {
     public static Mancare[] populateMancareData(){
         return new Mancare[]{
-//                other
-                new Mancare("Boiled Egg", "picture_adapter_mancare_boiled_eggs", 155, 1.1, 13),
-                new Mancare("Stuffed Cabbage", "picture_adapter_mancare_cabbage", 289, 14.3, 11.5),
-                new Mancare("Cheese", "picture_adapter_mancare_cheese", 402, 1.3, 25),
-                new Mancare("Multigrain Bread", "picture_adapter_mancare_multigrain_bread", 265, 43, 13),
-                new Mancare("Pilau Rice", "picture_adapter_mancare_pilau", 359, 76, 10),
 
 //                meat
                 new Mancare("Beef", "picture_adapter_mancare_beef", 217, 0, 26.1),
@@ -39,7 +33,15 @@ public class ListaMancare {
                 new Mancare("Cucumber", "picture_adapter_mancare_cucumber", 8,1.9,0.3),
                 new Mancare("Lettuce", "picture_adapter_mancare_lettuce", 8, 1.5, 0.6),
                 new Mancare("Onion", "picture_adapter_mancare_onion", 40, 9.3, 1.1),
-                new Mancare("Chickpeas", "picture_adapter_mancare_chickpeas", 364, 61, 19)
+                new Mancare("Chickpeas", "picture_adapter_mancare_chickpeas", 364, 61, 19),
+
+//                other
+                new Mancare("Boiled Egg", "picture_adapter_mancare_boiled_eggs", 155, 1.1, 13),
+                new Mancare("Stuffed Cabbage", "picture_adapter_mancare_cabbage", 289, 14.3, 11.5),
+                new Mancare("Cheese", "picture_adapter_mancare_cheese", 402, 1.3, 25),
+                new Mancare("Multigrain Bread", "picture_adapter_mancare_multigrain_bread", 265, 43, 13),
+                new Mancare("Pilau Rice", "picture_adapter_mancare_pilau", 359, 76, 10),
+                new Mancare("Shawarma", "picture_adapter_mancare_shawarma", 238, 18.9, 8.2)
 
         };
     }

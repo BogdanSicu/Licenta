@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,24 +31,44 @@ public class MainActivity extends AppCompatActivity {
     private Nutrition_Fragment nutrition_fragment = new Nutrition_Fragment();
     private Settings_Fragment settings_fragment = new Settings_Fragment();
 
+    private int verificareSetari=0;
+
+//    Preferinte
+    SharedPreferences preferinte;
+    SharedPreferences.Editor editor;
+
+    private static final String aSmallPriceToPayForSalvation = "doza_de_sanatate_preferinte";
+    private static final String preferedNavigationBar = "doza_de_sanatate_navigation_bar";
+
+    private int preferinte_navigation_bar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //pentru a scoate action bar
-        decorView = getWindow().getDecorView();
-        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener(){
-            @Override
-            public void onSystemUiVisibilityChange(int visibility) {
-                if(visibility == 0)
-                    decorView.setSystemUiVisibility(hideSystemBars());
-            }
-        });
+        Intent intent = getIntent();
+        verificareSetari = intent.getIntExtra("setari?", 0);
+
+        initPreferences();
+
+        if(preferinte_navigation_bar == 1){
+            //pentru a scoate action bar
+            decorView = getWindow().getDecorView();
+            decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener(){
+                @Override
+                public void onSystemUiVisibilityChange(int visibility) {
+                    if(visibility == 0)
+                        decorView.setSystemUiVisibility(hideSystemBars());
+                }
+            });
+        }
+
 
         initComponents();
         DefaultFragment();
+
 
         bottomNavigationMenu.setOnNavigationItemSelectedListener(navigationListener);
     }
@@ -77,9 +100,16 @@ public class MainActivity extends AppCompatActivity {
             };
 
     void DefaultFragment(){
-        Fragment selectedFragment = new Workout_Fragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_container,
-                selectedFragment).commit();
+        if(verificareSetari == 0){
+            Fragment selectedFragment = new Workout_Fragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_container,
+                    selectedFragment).commit();
+        }else{
+            Fragment selectedFragment = new Settings_Fragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_container,
+                    selectedFragment).commit();
+            bottomNavigationMenu.setSelectedItemId(R.id.menu_settings);
+        }
     }
 
     void initComponents(){
@@ -90,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if(hasFocus){
+        if(hasFocus && preferinte_navigation_bar == 1){
             decorView.setSystemUiVisibility(hideSystemBars());
         }
     }
@@ -112,5 +142,14 @@ public class MainActivity extends AppCompatActivity {
         }else{
             super.onBackPressed();
         }
+    }
+
+    @SuppressLint("CommitPrefEdits")
+    void initPreferences(){
+        preferinte = getApplicationContext().getSharedPreferences(aSmallPriceToPayForSalvation, Context.MODE_PRIVATE);
+        editor = preferinte.edit();
+
+        preferinte_navigation_bar = preferinte.getInt(preferedNavigationBar, 1);
+
     }
 }

@@ -49,10 +49,10 @@ public class ListaAntrenamentExercitiuCrossRef {
 
 //                Chest at Home
                 new AntrenamentExercitiuCrossRef("Chest at Home", "Push-Up"),
-                new AntrenamentExercitiuCrossRef("Chest at Home", "Close Grip Push-Up"),
                 new AntrenamentExercitiuCrossRef("Chest at Home", "Sit Up"),
                 new AntrenamentExercitiuCrossRef("Chest at Home", "Declined Push-Up"),
                 new AntrenamentExercitiuCrossRef("Chest at Home", "Reverse Crunch"),
+                new AntrenamentExercitiuCrossRef("Chest at Home", "Close Grip Push-Up"),
                 new AntrenamentExercitiuCrossRef("Chest at Home", "Triceps Dip"),
 
 //                Chest and Abs
