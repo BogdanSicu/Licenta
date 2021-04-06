@@ -20,7 +20,7 @@ import com.example.doza_de_sanatate.R;
 
 import java.util.List;
 
-public class AdapterExercice extends ArrayAdapter<Exercitiu> {
+public class AdapterExercise extends ArrayAdapter<Exercitiu> {
 
     private Context myContext;
     private int resourceID;
@@ -33,7 +33,7 @@ public class AdapterExercice extends ArrayAdapter<Exercitiu> {
         private ConstraintLayout adapterExerciceLayout;
     }
 
-    public AdapterExercice(@NonNull Context context, int resource, @NonNull List<Exercitiu> objects, LayoutInflater inflater, String gen) {
+    public AdapterExercise(@NonNull Context context, int resource, @NonNull List<Exercitiu> objects, LayoutInflater inflater, String gen) {
         super(context, resource, objects);
         this.myContext = context;
         this.resourceID = resource;

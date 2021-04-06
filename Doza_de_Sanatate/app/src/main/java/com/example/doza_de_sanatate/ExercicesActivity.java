@@ -10,8 +10,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.doza_de_sanatate.Adapters.AdapterExercice;
-import com.example.doza_de_sanatate.RoomDataBase.Classes.Antrenament;
+import com.example.doza_de_sanatate.Adapters.AdapterExercise;
 import com.example.doza_de_sanatate.RoomDataBase.Classes.Exercitiu;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class ExercicesActivity extends AppCompatActivity {
     private TextView repsPerSeriesOutput;
     private TextView totalExercicesOutput;
     private ListView listViewExercices;
-    private AdapterExercice adapterExercice;
+    private AdapterExercise adapterExercise;
 
     //    preferinte
     private static final String aSmallPriceToPayForSalvation = "doza_de_sanatate_preferinte";
@@ -63,8 +62,8 @@ public class ExercicesActivity extends AppCompatActivity {
         }
 
 
-        adapterExercice = new AdapterExercice(this, R.layout.adapter_exercice_view, listaExercitii, this.getLayoutInflater(), genul);
-        listViewExercices.setAdapter(adapterExercice);
+        adapterExercise = new AdapterExercise(this, R.layout.adapter_exercice_view, listaExercitii, this.getLayoutInflater(), genul);
+        listViewExercices.setAdapter(adapterExercise);
 
     }
 

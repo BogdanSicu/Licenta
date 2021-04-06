@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.doza_de_sanatate.Adapters.AdapterRecyclerFood;
+import com.example.doza_de_sanatate.Adapters.AdapterRecyclerWorkout;
 import com.example.doza_de_sanatate.Adapters.AdapterWorkout;
 import com.example.doza_de_sanatate.RoomDataBase.Classes.AntrenamentCuExercitii;
 import com.example.doza_de_sanatate.ExercicesActivity;
@@ -34,6 +38,7 @@ public class Workout_Fragment extends Fragment {
     private ArrayList<AntrenamentCuExercitii> listaAntrenamenteSala = new ArrayList<>();
 
     private ListView workout_list;
+
     private AdapterWorkout adapterWorkout;
     private TabLayout workout_menu;
 
@@ -70,6 +75,7 @@ public class Workout_Fragment extends Fragment {
                 }else{
                     adapterWorkout = new AdapterWorkout(getContext().getApplicationContext(), R.layout.adapter_workout_view, listaAntrenamenteAcasa, inflater);
                     workout_list.setAdapter(adapterWorkout);
+
                 }
             }
 

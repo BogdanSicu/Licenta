@@ -7,6 +7,8 @@ import android.icu.text.DecimalFormat;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.doza_de_sanatate.Adapters.AdapterFood;
+import com.example.doza_de_sanatate.Adapters.AdapterRecyclerFood;
 import com.example.doza_de_sanatate.MainActivity;
 import com.example.doza_de_sanatate.RoomDataBase.Classes.Mancare;
 import com.example.doza_de_sanatate.R;
@@ -32,7 +35,11 @@ public class Nutrition_Fragment extends Fragment {
     private TextView nutritionKcal;
     private TextView nutritionCarb;
     private TextView nutritionProtein;
-    private ListView nutritionListView;
+//    private ListView nutritionListView;
+    private RecyclerView foodRecyclerView;
+    private RecyclerView.Adapter foodRecyclerAdapter;
+    private RecyclerView.LayoutManager foodRecyclerLayout;
+
 
     private AdapterFood adapterFood;
 
@@ -75,8 +82,16 @@ public class Nutrition_Fragment extends Fragment {
         nutritionKcal = view.findViewById(R.id.fragment_nutrition_kcal);
         nutritionCarb = view.findViewById(R.id.fragment_nutrition_carb);
         nutritionProtein = view.findViewById(R.id.fragment_nutrition_protein);
-        nutritionListView = view.findViewById(R.id.fragment_nutrition_list);
+//        nutritionListView = view.findViewById(R.id.fragment_nutrition_list);
         mancareService = new MancareService(getContext());
+
+
+        foodRecyclerView = view.findViewById(R.id.fragment_nutrition_list);
+        foodRecyclerView.setHasFixedSize(true);
+        foodRecyclerLayout = new LinearLayoutManager(getContext());
+        foodRecyclerAdapter = new AdapterRecyclerFood(listaMancare, getContext());
+
+
     }
 
     private Callback<List<Mancare>> getAllMancareCallBack(){
@@ -94,8 +109,10 @@ public class Nutrition_Fragment extends Fragment {
     }
 
     private void resetAdapterMancare(){
-        adapterFood = new AdapterFood(getContext().getApplicationContext(), R.layout.adapter_food_view, listaMancare, layoutInflater);
-        nutritionListView.setAdapter(adapterFood);
+//        adapterFood = new AdapterFood(getContext().getApplicationContext(), R.layout.adapter_food_view, listaMancare, layoutInflater);
+//        nutritionListView.setAdapter(adapterFood);
+        foodRecyclerView.setLayoutManager(foodRecyclerLayout);
+        foodRecyclerView.setAdapter(foodRecyclerAdapter);
     }
 
     void initPreferences(SharedPreferences preferinte){
