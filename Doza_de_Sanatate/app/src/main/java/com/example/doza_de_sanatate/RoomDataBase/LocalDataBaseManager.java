@@ -38,6 +38,7 @@ public abstract class LocalDataBaseManager extends RoomDatabase {
             synchronized (LocalDataBaseManager.class) {
                 if(dataBaseManager == null){
                     dataBaseManager = Room.databaseBuilder(applicationContext, LocalDataBaseManager.class, denumireBD)
+                            .fallbackToDestructiveMigration()
                             .addCallback(new Callback() {
                                 @Override
                                 public void onCreate(@NonNull SupportSQLiteDatabase db) {

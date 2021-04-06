@@ -128,7 +128,6 @@ public class Workout_Fragment extends Fragment {
         preferinte = getContext().getSharedPreferences(aSmallPriceToPayForSalvation, Context.MODE_PRIVATE);
         editor = preferinte.edit();
         preferinte_exercitii = preferinte.getString(preferedExercises, "");
-        Toast.makeText(getContext(), preferinte_exercitii.toString(), Toast.LENGTH_SHORT).show();
     }
 
     private Callback<List<AntrenamentCuExercitii>> getAllAntrenamenteCuExercitiiCallBack(){
