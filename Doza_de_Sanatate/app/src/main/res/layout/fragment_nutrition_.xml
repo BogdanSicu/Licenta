@@ -43,18 +43,7 @@
         android:paddingEnd="10dp"
         android:paddingStart="10dp"/>
 
-<!--    <ListView-->
-<!--        android:id="@+id/fragment_nutrition_list"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        tools:layout_editor_absoluteX="124dp"-->
-<!--        tools:layout_editor_absoluteY="155dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/fragment_nutrition_protein"-->
-<!--        android:layout_marginTop="10dp"/>-->
-
-    <androidx.recyclerview.widget.RecyclerView
+    <ListView
         android:id="@+id/fragment_nutrition_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -64,5 +53,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_nutrition_protein"
         android:layout_marginTop="10dp"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
