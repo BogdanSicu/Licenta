@@ -1,6 +1,8 @@
 package com.example.doza_de_sanatate.Fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.doza_de_sanatate.Adapters.AdapterWorkout;
 import com.example.doza_de_sanatate.RoomDataBase.Classes.AntrenamentCuExercitii;
@@ -36,6 +39,16 @@ public class Workout_Fragment extends Fragment {
 
     private AntrenamenteCuExercitiiService antrenamenteCuExercitiiService;
     private LayoutInflater layoutInflater;
+
+//    fisier preferinte
+    private SharedPreferences preferinte;
+    private SharedPreferences.Editor editor;
+
+    private static final String aSmallPriceToPayForSalvation = "doza_de_sanatate_preferinte";
+    private static final String preferedExercises = "doza_de_sanatate_exercitii";
+
+    private String preferinte_exercitii;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,6 +98,7 @@ public class Workout_Fragment extends Fragment {
 
                     listaExercitii.addAll(listaAntrenamenteSala.get(position).exercitii);
                     bundle.putSerializable("listaExercitiiAntrenament", (Serializable) listaExercitii);
+                    bundle.putString("antrenament_gen", listaAntrenamenteSala.get(position).antrenament.getGen());
 
                 }else{
                     if(listaAntrenamenteAcasa.get(position) == null) {
@@ -93,7 +107,9 @@ public class Workout_Fragment extends Fragment {
 
                     listaExercitii.addAll(listaAntrenamenteAcasa.get(position).exercitii);
                     bundle.putSerializable("listaExercitiiAntrenament", (Serializable) listaExercitii);
+                    bundle.putString("antrenament_gen", listaAntrenamenteAcasa.get(position).antrenament.getGen());
                 }
+
                 inentExercitii.putExtras(bundle);
                 startActivity(inentExercitii);
             }
@@ -108,6 +124,11 @@ public class Workout_Fragment extends Fragment {
         workout_list = view.findViewById(R.id.workout_list_fragment);
         workout_menu = view.findViewById(R.id.fragment_workout_menu);
         antrenamenteCuExercitiiService = new AntrenamenteCuExercitiiService(getContext());
+
+        preferinte = getContext().getSharedPreferences(aSmallPriceToPayForSalvation, Context.MODE_PRIVATE);
+        editor = preferinte.edit();
+        preferinte_exercitii = preferinte.getString(preferedExercises, "");
+        Toast.makeText(getContext(), preferinte_exercitii.toString(), Toast.LENGTH_SHORT).show();
     }
 
     private Callback<List<AntrenamentCuExercitii>> getAllAntrenamenteCuExercitiiCallBack(){
@@ -120,13 +141,28 @@ public class Workout_Fragment extends Fragment {
                     listaAntrenamenteSala.clear();
                     listaAntrenamente.addAll(result);
 
+
+
                     for (AntrenamentCuExercitii element: listaAntrenamente) {
-                        if(element.antrenament.getLocatie().equals("acasa")){
-                            listaAntrenamenteAcasa.add(element);
+                        if(preferinte_exercitii.equals("Barbat") || preferinte_exercitii.equals("Femeie")){
+                            if(element.antrenament.getGen().equals(preferinte_exercitii)){
+                                if(element.antrenament.getLocatie().equals("acasa")){
+                                    listaAntrenamenteAcasa.add(element);
+                                }
+                                else{
+                                    listaAntrenamenteSala.add(element);
+                                }
+                            }
                         }
                         else{
-                            listaAntrenamenteSala.add(element);
+                            if(element.antrenament.getLocatie().equals("acasa")){
+                                listaAntrenamenteAcasa.add(element);
+                            }
+                            else{
+                                listaAntrenamenteSala.add(element);
+                            }
                         }
+
                     }
                     listaAntrenamenteAcasa.add(null);
                     listaAntrenamenteSala.add(null);

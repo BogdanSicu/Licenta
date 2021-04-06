@@ -24,19 +24,19 @@ public class Antrenament implements Serializable {
     @ColumnInfo(name = "locatie")
     private String locatie;
 
-    @ColumnInfo(name = "pozaFemeie")
-    private String pozaFemeie;
+    @ColumnInfo(name = "gen")
+    private String gen;
 
-    @ColumnInfo(name = "pozaBarbat")
-    private String pozaBarbat;
+    @ColumnInfo(name = "poza")
+    private String poza;
 
-    public Antrenament(@NonNull String denumireAntrenamentID, int dificultate, String grupaDeMuschi, String locatie, String pozaFemeie, String pozaBarbat) {
+    public Antrenament(@NonNull String denumireAntrenamentID, int dificultate, String grupaDeMuschi, String locatie, String gen, String poza) {
         this.denumireAntrenamentID = denumireAntrenamentID;
         this.dificultate = dificultate;
         this.grupaDeMuschi = grupaDeMuschi;
         this.locatie = locatie;
-        this.pozaFemeie = pozaFemeie;
-        this.pozaBarbat = pozaBarbat;
+        this.gen = gen;
+        this.poza = poza;
     }
 
     public String getDenumireAntrenamentID() {
@@ -55,11 +55,11 @@ public class Antrenament implements Serializable {
         return locatie;
     }
 
-    public String getPozaFemeie() {
-        return pozaFemeie;
+    public String getGen() {
+        return gen;
     }
 
-    public String getPozaBarbat() {
-        return pozaBarbat;
+    public String getPoza() {
+        return poza;
     }
 }

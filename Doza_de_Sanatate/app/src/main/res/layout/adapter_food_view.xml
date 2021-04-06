@@ -11,7 +11,7 @@
         android:id="@+id/adapter_food_image"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/img_push_up_male"
+        app:srcCompat="@drawable/icon_launcher"
         tools:layout_editor_absoluteX="37dp"
         tools:layout_editor_absoluteY="8dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -49,7 +49,7 @@ public class AdapterWorkout extends ArrayAdapter<AntrenamentCuExercitii> {
 
         if(getItem(position) != null){
             String denumire = getItem(position).antrenament.getDenumireAntrenamentID();
-            String poza = getItem(position).antrenament.getPozaBarbat();
+            String poza = getItem(position).antrenament.getPoza();
             int dificultate = getItem(position).antrenament.getDificultate();
 
             adapterWorkoutTextView.setText(denumire.toString());

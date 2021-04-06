@@ -33,11 +33,12 @@ public class Settings_Fragment extends Fragment {
     private TextInputEditText settings_height;
     private RadioGroup settings_workout;
     private RadioGroup settings_objective;
+    private RadioGroup settings_exercises;
     private Switch settings_hide_avigation_bar;
 
     //    fisier preferinte
-    SharedPreferences preferinte;
-    SharedPreferences.Editor editor;
+    private SharedPreferences preferinte;
+    private SharedPreferences.Editor editor;
 
     private static final String aSmallPriceToPayForSalvation = "doza_de_sanatate_preferinte";
     private static final String preferedHeight = "doza_de_sanatate_inaltime";
@@ -45,12 +46,14 @@ public class Settings_Fragment extends Fragment {
     private static final String preferedSport = "doza_de_sanatate_sport";
     private static final String preferedGoal = "doza_de_sanatate_obiectiv";
     private static final String preferedNavigationBar = "doza_de_sanatate_navigation_bar";
+    private static final String preferedExercises = "doza_de_sanatate_exercitii";
 
     private int preferinte_inaltime;
     private int preferinte_greutate;
     private String preferinte_sport;
     private String preferinte_obiectiv;
     private int preferinte_navigation_bar;
+    private String preferinte_exercitii;
 
     @Override
     public View onCreateView(LayoutInflater inflater,@Nullable ViewGroup container,
@@ -70,6 +73,7 @@ public class Settings_Fragment extends Fragment {
         settings_height = view.findViewById(R.id.fragment_settings_height_input);
         settings_workout= view.findViewById(R.id.fragment_settings_radio_group_days_of_workout);
         settings_objective = view.findViewById(R.id.fragment_settings_objective_radio_group);
+        settings_exercises = view.findViewById(R.id.fragment_settings_gender_exercises);
         settings_hide_avigation_bar = view.findViewById(R.id.fragment_settings_nagivation_bar_switch);
     }
 
@@ -83,6 +87,7 @@ public class Settings_Fragment extends Fragment {
         preferinte_sport = preferinte.getString(preferedSport, "");
         preferinte_obiectiv = preferinte.getString(preferedGoal, "");
         preferinte_navigation_bar = preferinte.getInt(preferedNavigationBar, 1);
+        preferinte_exercitii = preferinte.getString(preferedExercises, "");
 
     }
 
@@ -112,6 +117,18 @@ public class Settings_Fragment extends Fragment {
                 break;
             case "musculatura":
                 settings_objective.check(R.id.fragment_settings_objective_muscle);
+                break;
+        }
+
+        switch (preferinte_exercitii) {
+            case "Femeie":
+                settings_exercises.check(R.id.fragment_settings_female);
+                break;
+            case "Barbat":
+                settings_exercises.check(R.id.fragment_settings_male);
+                break;
+            case "Both":
+                settings_exercises.check(R.id.fragment_settings_both);
                 break;
         }
 
@@ -204,6 +221,26 @@ public class Settings_Fragment extends Fragment {
                 }
 
                 editor.putString(preferedGoal, preferinte_obiectiv);
+                editor.apply();
+
+                Toast.makeText(getContext(), "Saved Changes", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        settings_exercises.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                closeKeyboards();
+
+                if(checkedId == R.id.fragment_settings_female){
+                    preferinte_exercitii = "Femeie";
+                }else if(checkedId == R.id.fragment_settings_male){
+                    preferinte_exercitii = "Barbat";
+                }else if (checkedId == R.id.fragment_settings_both){
+                    preferinte_exercitii = "Both";
+                }
+
+                editor.putString(preferedExercises, preferinte_exercitii);
                 editor.apply();
 
                 Toast.makeText(getContext(), "Saved Changes", Toast.LENGTH_SHORT).show();

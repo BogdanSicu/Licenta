@@ -42,6 +42,7 @@ public class ExercicesActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         List<Exercitiu> listaExercitii = (List<Exercitiu>) bundle.getSerializable("listaExercitiiAntrenament");
         listaExercitii.add(null);
+        String genul = (String) bundle.getString("antrenament_gen");
 
         initComponents();
 
@@ -62,7 +63,7 @@ public class ExercicesActivity extends AppCompatActivity {
         }
 
 
-        adapterExercice = new AdapterExercice(this, R.layout.adapter_exercice_view, listaExercitii, this.getLayoutInflater());
+        adapterExercice = new AdapterExercice(this, R.layout.adapter_exercice_view, listaExercitii, this.getLayoutInflater(), genul);
         listViewExercices.setAdapter(adapterExercice);
 
     }

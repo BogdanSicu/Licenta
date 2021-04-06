@@ -18,17 +18,11 @@ public class Exercitiu implements Serializable {
     @ColumnInfo(name = "grupaDeMuschi")
     private String grupaDeMuschi;
 
-    @ColumnInfo(name = "pozeFemeie1")
-    private String pozeFemeie1;
+    @ColumnInfo(name = "pozeFemeie")
+    private String pozeFemeie;
 
-    @ColumnInfo(name = "pozeFemeie2")
-    private String pozeFemeie2;
-
-    @ColumnInfo(name = "pozeBarbat1")
-    private String pozeBarbat1;
-
-    @ColumnInfo(name = "pozeBarbat2")
-    private String pozeBarbat2;
+    @ColumnInfo(name = "pozeBarbat")
+    private String pozeBarbat;
 
     @ColumnInfo(name = "iconitaFemeie")
     private String iconitaFemeie;
@@ -36,13 +30,11 @@ public class Exercitiu implements Serializable {
     @ColumnInfo(name = "iconitaBarbat")
     private String iconitaBarbat;
 
-    public Exercitiu(String denumireExercitiuID, String grupaDeMuschi, String pozeFemeie1, String pozeFemeie2, String pozeBarbat1, String pozeBarbat2, String iconitaFemeie, String iconitaBarbat) {
+    public Exercitiu(@NonNull String denumireExercitiuID, String grupaDeMuschi, String pozeFemeie, String pozeBarbat, String iconitaFemeie, String iconitaBarbat) {
         this.denumireExercitiuID = denumireExercitiuID;
         this.grupaDeMuschi = grupaDeMuschi;
-        this.pozeFemeie1 = pozeFemeie1;
-        this.pozeFemeie2 = pozeFemeie2;
-        this.pozeBarbat1 = pozeBarbat1;
-        this.pozeBarbat2 = pozeBarbat2;
+        this.pozeFemeie = pozeFemeie;
+        this.pozeBarbat = pozeBarbat;
         this.iconitaFemeie = iconitaFemeie;
         this.iconitaBarbat = iconitaBarbat;
     }
@@ -55,20 +47,12 @@ public class Exercitiu implements Serializable {
         return grupaDeMuschi;
     }
 
-    public String getPozeFemeie1() {
-        return pozeFemeie1;
+    public String getPozeFemeie() {
+        return pozeFemeie;
     }
 
-    public String getPozeFemeie2() {
-        return pozeFemeie2;
-    }
-
-    public String getPozeBarbat1() {
-        return pozeBarbat1;
-    }
-
-    public String getPozeBarbat2() {
-        return pozeBarbat2;
+    public String getPozeBarbat() {
+        return pozeBarbat;
     }
 
     public String getIconitaFemeie() {

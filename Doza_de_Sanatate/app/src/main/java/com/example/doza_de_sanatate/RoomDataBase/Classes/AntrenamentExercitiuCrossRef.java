@@ -3,9 +3,16 @@ package com.example.doza_de_sanatate.RoomDataBase.Classes;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
-@Entity(primaryKeys = {"denumireAntrenamentID", "denumireExercitiuID"})
+@Entity
 public class AntrenamentExercitiuCrossRef {
+
+    @NonNull
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    private long id;
 
     @NonNull
     @ColumnInfo(name = "denumireAntrenamentID")
@@ -15,9 +22,21 @@ public class AntrenamentExercitiuCrossRef {
     @ColumnInfo(name = "denumireExercitiuID")
     private String denumireExercitiuID;
 
+    public AntrenamentExercitiuCrossRef(long id, @NonNull String denumireAntrenamentID, @NonNull String denumireExercitiuID) {
+        this.id = id;
+        this.denumireAntrenamentID = denumireAntrenamentID;
+        this.denumireExercitiuID = denumireExercitiuID;
+    }
+
+    @Ignore
     public AntrenamentExercitiuCrossRef(@NonNull String denumireAntrenamentID, @NonNull String denumireExercitiuID) {
         this.denumireAntrenamentID = denumireAntrenamentID;
         this.denumireExercitiuID = denumireExercitiuID;
+    }
+
+    @NonNull
+    public long getId() {
+        return id;
     }
 
     @NonNull
@@ -25,16 +44,9 @@ public class AntrenamentExercitiuCrossRef {
         return denumireAntrenamentID;
     }
 
-    public void setDenumireAntrenamentID(@NonNull String denumireAntrenamentID) {
-        this.denumireAntrenamentID = denumireAntrenamentID;
-    }
-
     @NonNull
     public String getDenumireExercitiuID() {
         return denumireExercitiuID;
     }
 
-    public void setDenumireExercitiuID(@NonNull String denumireExercitiuID) {
-        this.denumireExercitiuID = denumireExercitiuID;
-    }
 }

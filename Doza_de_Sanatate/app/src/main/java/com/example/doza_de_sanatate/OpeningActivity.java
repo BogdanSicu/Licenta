@@ -42,6 +42,7 @@ public class OpeningActivity extends AppCompatActivity {
     private static final String preferedGender = "doza_de_sanatate_gen";
     private static final String preferedSport = "doza_de_sanatate_sport";
     private static final String preferedGoal = "doza_de_sanatate_obiectiv";
+    private static final String preferedExercises = "doza_de_sanatate_exercitii";
 
     private int preferinte_varsta;
     private int preferinte_inaltime;
@@ -49,6 +50,7 @@ public class OpeningActivity extends AppCompatActivity {
     private String preferinte_gen;
     private String preferinte_sport;
     private String preferinte_obiectiv;
+    private String preferinte_exercitii;
 
 //  initializare baza de date
     private MancareService mancareService;
@@ -113,10 +115,12 @@ public class OpeningActivity extends AppCompatActivity {
         preferinte_gen = preferinte.getString(preferedGender, "");
         preferinte_sport = preferinte.getString(preferedSport, "");
         preferinte_obiectiv = preferinte.getString(preferedGoal, "");
+        preferinte_exercitii = preferinte.getString(preferedExercises, "");
 
         if(preferinte_varsta != -1 && preferinte_inaltime != -1
                 && preferinte_greutate!=-1 && !(preferinte_gen.equals(""))
-                    && !(preferinte_sport.equals("")) && !(preferinte_obiectiv.equals(""))) {
+                    && !(preferinte_sport.equals("")) && !(preferinte_obiectiv.equals(""))
+                        && !(preferinte_exercitii.equals(""))) {
 
             Intent main = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(main);
@@ -131,6 +135,7 @@ public class OpeningActivity extends AppCompatActivity {
         String gen;
         String sport;
         String obiectiv;
+        String exercitii;
 
         try{
             if(input_varsta.toString().equals("")){
@@ -172,8 +177,10 @@ public class OpeningActivity extends AppCompatActivity {
         }else {
             if(idGenul == R.id.sex_radio_barbat){
                 gen = "Barbat";
+                exercitii = "Barbat";
             }else{
                 gen = "Femeie";
+                exercitii = "Femeie";
             }
         }
 
@@ -211,6 +218,7 @@ public class OpeningActivity extends AppCompatActivity {
         preferinte_gen = gen;
         preferinte_sport = sport;
         preferinte_obiectiv = obiectiv;
+        preferinte_exercitii = exercitii;
 
         return true;
     }
@@ -224,6 +232,7 @@ public class OpeningActivity extends AppCompatActivity {
         editor.putString(preferedGender, preferinte_gen);
         editor.putString(preferedSport, preferinte_sport);
         editor.putString(preferedGoal, preferinte_obiectiv);
+        editor.putString(preferedExercises, preferinte_exercitii);
 
         //aplicam schimbarile
         editor.apply();
