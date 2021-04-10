@@ -1,6 +1,8 @@
 package com.example.doza_de_sanatate.Fragments;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,23 +11,22 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Switch;
-import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.doza_de_sanatate.MainActivity;
-import com.example.doza_de_sanatate.RoomDataBase.Classes.Antrenament;
-import com.example.doza_de_sanatate.RoomDataBase.Classes.Exercitiu;
+import com.example.doza_de_sanatate.Notifications.NotificationWorkout;
 import com.example.doza_de_sanatate.R;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.Calendar;
 
 public class Settings_Fragment extends Fragment {
 
@@ -35,6 +36,7 @@ public class Settings_Fragment extends Fragment {
     private RadioGroup settings_objective;
     private RadioGroup settings_exercises;
     private Switch settings_hide_avigation_bar;
+    private TimePicker timePicker;
 
     //    fisier preferinte
     private SharedPreferences preferinte;
@@ -68,17 +70,18 @@ public class Settings_Fragment extends Fragment {
         return view;
     }
 
-    void initComponents(View view){
+    private void initComponents(View view){
         settings_weight = view.findViewById(R.id.fragment_settings_weight_input);
         settings_height = view.findViewById(R.id.fragment_settings_height_input);
         settings_workout= view.findViewById(R.id.fragment_settings_radio_group_days_of_workout);
         settings_objective = view.findViewById(R.id.fragment_settings_objective_radio_group);
         settings_exercises = view.findViewById(R.id.fragment_settings_gender_exercises);
         settings_hide_avigation_bar = view.findViewById(R.id.fragment_settings_nagivation_bar_switch);
+        timePicker = view.findViewById(R.id.timepicker);
     }
 
     @SuppressLint("CommitPrefEdits")
-    void initPreferences(){
+    private void initPreferences(){
          preferinte = getContext().getSharedPreferences(aSmallPriceToPayForSalvation, Context.MODE_PRIVATE);
          editor = preferinte.edit();
 
@@ -92,7 +95,7 @@ public class Settings_Fragment extends Fragment {
     }
 
     @SuppressLint("SetTextI18n")
-    void initSettings(){
+    private void initSettings(){
         settings_weight.setText(Integer.toString(preferinte_greutate));
         settings_height.setText(Integer.toString(preferinte_inaltime));
 
@@ -140,7 +143,7 @@ public class Settings_Fragment extends Fragment {
 
     }
 
-    void initFunctions(){
+    private void initFunctions(){
 
         settings_weight.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -238,6 +241,7 @@ public class Settings_Fragment extends Fragment {
                     preferinte_exercitii = "Barbat";
                 }else if (checkedId == R.id.fragment_settings_both){
                     preferinte_exercitii = "Both";
+
                 }
 
                 editor.putString(preferedExercises, preferinte_exercitii);
@@ -268,9 +272,33 @@ public class Settings_Fragment extends Fragment {
             }
         });
 
+        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+
+                Intent intent = new Intent(getContext(), NotificationWorkout.class);
+                intent.putExtra("notificationID", 1);
+                PendingIntent alarmIntent = PendingIntent.getBroadcast(getContext(),
+                        0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+                AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+
+                Calendar startTime = Calendar.getInstance();
+                startTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                startTime.set(Calendar.MINUTE, minute);
+                startTime.set(Calendar.SECOND, 0);
+
+                long alarmStartTime = startTime.getTimeInMillis();
+
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+                        alarmStartTime, AlarmManager.INTERVAL_DAY,alarmIntent);
+
+            }
+        });
+
     }
 
-    void closeKeyboards(){
+    private void closeKeyboards(){
         settings_weight.onEditorAction(EditorInfo.IME_ACTION_DONE);
         settings_height.onEditorAction(EditorInfo.IME_ACTION_DONE);
     }

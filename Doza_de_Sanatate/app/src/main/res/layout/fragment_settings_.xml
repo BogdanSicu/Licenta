@@ -220,6 +220,15 @@
                         app:layout_constraintTop_toBottomOf="@id/fragment_settings_gender_exercises"
                         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
+            <TimePicker
+                android:id="@+id/timepicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/fragment_settings_nagivation_bar_switch"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
