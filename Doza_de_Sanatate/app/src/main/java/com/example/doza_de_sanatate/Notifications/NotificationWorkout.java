@@ -20,7 +20,7 @@ public class NotificationWorkout extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         int notifcationID = intent.getIntExtra("notificationID", 0);
-        String message = "salut";
+        String message = "Get up, it is the time for your workout";
 
         Intent mainIntent = new Intent(context, MainActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(
@@ -32,7 +32,7 @@ public class NotificationWorkout extends BroadcastReceiver {
 
         if(Build.VERSION.SDK_INT >=  Build.VERSION_CODES.O){
             CharSequence channel_name = "My notification";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            int importance = NotificationManager.IMPORTANCE_HIGH;
 
             NotificationChannel channel = new NotificationChannel(channel_ID,
                     channel_name, importance);
@@ -41,10 +41,10 @@ public class NotificationWorkout extends BroadcastReceiver {
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channel_ID)
                     .setSmallIcon(R.drawable.icon_menu_workout)
-                    .setContentTitle("Titlul meu")
+                    .setContentTitle("Workout Time")
                     .setContentText(message)
                     .setContentIntent(contentIntent)
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)
                     .setAutoCancel(true);
 
             notificationManager.notify(notifcationID, builder.build());

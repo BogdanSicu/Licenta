@@ -3,6 +3,7 @@ package com.example.doza_de_sanatate.Fragments;
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.CompoundButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TimePicker;
@@ -36,7 +38,9 @@ public class Settings_Fragment extends Fragment {
     private RadioGroup settings_objective;
     private RadioGroup settings_exercises;
     private Switch settings_hide_avigation_bar;
-    private TimePicker timePicker;
+    private RadioGroup settings_alarm;
+    private RadioButton settings_alarm_button;
+
 
     //    fisier preferinte
     private SharedPreferences preferinte;
@@ -49,6 +53,9 @@ public class Settings_Fragment extends Fragment {
     private static final String preferedGoal = "doza_de_sanatate_obiectiv";
     private static final String preferedNavigationBar = "doza_de_sanatate_navigation_bar";
     private static final String preferedExercises = "doza_de_sanatate_exercitii";
+    private static final String preferedHour = "doza_de_sanatate_ora";
+    private static final String preferedMinute = "doza_de_sanatate_minut";
+    private static final String preferedAlarm = "doza_de_sanatate_alarma";
 
     private int preferinte_inaltime;
     private int preferinte_greutate;
@@ -56,6 +63,9 @@ public class Settings_Fragment extends Fragment {
     private String preferinte_obiectiv;
     private int preferinte_navigation_bar;
     private String preferinte_exercitii;
+    private int preferinte_ora;
+    private int preferinte_minut;
+    private int preferinte_alarma;
 
     @Override
     public View onCreateView(LayoutInflater inflater,@Nullable ViewGroup container,
@@ -77,7 +87,8 @@ public class Settings_Fragment extends Fragment {
         settings_objective = view.findViewById(R.id.fragment_settings_objective_radio_group);
         settings_exercises = view.findViewById(R.id.fragment_settings_gender_exercises);
         settings_hide_avigation_bar = view.findViewById(R.id.fragment_settings_nagivation_bar_switch);
-        timePicker = view.findViewById(R.id.timepicker);
+        settings_alarm = view.findViewById(R.id.fragment_settings_alarm_radio);
+        settings_alarm_button = view.findViewById(R.id.fragment_settings_alarm_enable);
     }
 
     @SuppressLint("CommitPrefEdits")
@@ -92,6 +103,9 @@ public class Settings_Fragment extends Fragment {
         preferinte_navigation_bar = preferinte.getInt(preferedNavigationBar, 1);
         preferinte_exercitii = preferinte.getString(preferedExercises, "");
 
+        preferinte_ora =  preferinte.getInt(preferedHour, -1);
+        preferinte_minut =  preferinte.getInt(preferedMinute, -1);
+        preferinte_alarma =  preferinte.getInt(preferedAlarm, -1);
     }
 
     @SuppressLint("SetTextI18n")
@@ -140,6 +154,19 @@ public class Settings_Fragment extends Fragment {
         }else if(preferinte_navigation_bar == 0){
             settings_hide_avigation_bar.setChecked(false);
         }
+
+        if(preferinte_alarma == 1){
+            settings_alarm.check(R.id.fragment_settings_alarm_enable);
+        }else if(preferinte_alarma == 0){
+            settings_alarm.check(R.id.fragment_settings_alarm_disable);
+        }
+
+        if(preferinte_ora == -1){
+            settings_alarm_button.setText("You did never set your workout alarm");
+        }else{
+            settings_alarm_button.setText("Workout alarm set at " + Integer.toString(preferinte_ora) + ":" + Integer.toString(preferinte_minut));
+        }
+
 
     }
 
@@ -272,27 +299,63 @@ public class Settings_Fragment extends Fragment {
             }
         });
 
-        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+
+        settings_alarm.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
 
                 Intent intent = new Intent(getContext(), NotificationWorkout.class);
                 intent.putExtra("notificationID", 1);
                 PendingIntent alarmIntent = PendingIntent.getBroadcast(getContext(),
                         0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-
                 AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
 
-                Calendar startTime = Calendar.getInstance();
-                startTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                startTime.set(Calendar.MINUTE, minute);
-                startTime.set(Calendar.SECOND, 0);
+                if(checkedId == R.id.fragment_settings_alarm_enable){
 
-                long alarmStartTime = startTime.getTimeInMillis();
+                    TimePickerDialog timePickerDialog =  new TimePickerDialog(getContext(),
+                            new TimePickerDialog.OnTimeSetListener() {
+                                @Override
+                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                    preferinte_ora = hourOfDay;
+                                    preferinte_minut = minute;
 
-                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
-                        alarmStartTime, AlarmManager.INTERVAL_DAY,alarmIntent);
+                                    Calendar calendar = Calendar.getInstance();
+                                    calendar.set(0,0,0, preferinte_ora, preferinte_minut);
 
+
+                                    Calendar startTime = Calendar.getInstance();
+                                    startTime.set(Calendar.HOUR_OF_DAY, preferinte_ora);
+                                    startTime.set(Calendar.MINUTE, preferinte_minut);
+                                    startTime.set(Calendar.SECOND, 0);
+
+                                    long alarmStartTime = startTime.getTimeInMillis();
+
+                                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+                                            alarmStartTime, AlarmManager.INTERVAL_DAY,alarmIntent);
+
+                                    preferinte_alarma = 1;
+
+                                    editor.putInt(preferedAlarm, preferinte_alarma);
+                                    editor.putInt(preferedHour, preferinte_ora);
+                                    editor.putInt(preferedMinute, preferinte_minut);
+                                    editor.apply();
+
+                                    settings_alarm_button.setText("Workout alarm set at " + Integer.toString(preferinte_ora) + ":" + Integer.toString(preferinte_minut));
+                                    Toast.makeText(getContext(), "Saved Changes", Toast.LENGTH_SHORT).show();
+
+                                }
+                            },12,0,false);
+
+                    timePickerDialog.updateTime(preferinte_ora, preferinte_minut);
+                    timePickerDialog.show();
+
+                }else if(checkedId == R.id.fragment_settings_alarm_disable){
+                    alarmManager.cancel(alarmIntent);
+                    preferinte_alarma = 0;
+                    editor.putInt(preferedAlarm, preferinte_alarma);
+                    editor.apply();
+                    Toast.makeText(getContext(), "Saved Changes", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

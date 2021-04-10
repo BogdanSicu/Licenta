@@ -60,7 +60,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="10dp"
-                        android:text="How many days do you workout each week:"
+                        android:text="How many days do you workout each week"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -109,7 +109,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="10dp"
-                        android:text="Objective:"
+                        android:text="Objective"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -220,15 +220,52 @@
                         app:layout_constraintTop_toBottomOf="@id/fragment_settings_gender_exercises"
                         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
-            <TimePicker
-                android:id="@+id/timepicker"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/fragment_settings_alarm_label"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="183dp"
+                tools:layout_editor_absoluteY="465dp"
                 app:layout_constraintTop_toBottomOf="@id/fragment_settings_nagivation_bar_switch"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:text="Set your workout alarm"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                />
 
+            <RadioGroup
+                android:id="@+id/fragment_settings_alarm_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="286dp"
+                tools:layout_editor_absoluteY="476dp"
+                app:layout_constraintTop_toBottomOf="@id/fragment_settings_alarm_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:orientation="horizontal"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:padding="10dp"
+                >
 
+                <RadioButton
+                    android:id="@+id/fragment_settings_alarm_disable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Disabled"
+                    android:layout_marginEnd="35dp"/>
+
+                <RadioButton
+                    android:id="@+id/fragment_settings_alarm_enable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="You did never set your alarm"/>
+            </RadioGroup>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
