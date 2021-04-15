@@ -164,7 +164,28 @@ public class Settings_Fragment extends Fragment {
         if(preferinte_ora == -1){
             settings_alarm_button.setText("You did never set your workout alarm");
         }else{
-            settings_alarm_button.setText("Workout alarm set at " + Integer.toString(preferinte_ora) + ":" + Integer.toString(preferinte_minut));
+
+            Intent intent = new Intent(getContext(), NotificationWorkout.class);
+            intent.putExtra("notificationID", 1);
+            PendingIntent alarmIntent = PendingIntent.getBroadcast(getContext(),
+                    0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+            AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+
+            Calendar startTime = Calendar.getInstance();
+            startTime.set(Calendar.HOUR_OF_DAY, preferinte_ora);
+            startTime.set(Calendar.MINUTE, preferinte_minut);
+            startTime.set(Calendar.SECOND, 0);
+
+            long alarmStartTime = startTime.getTimeInMillis();
+
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+                    alarmStartTime, AlarmManager.INTERVAL_DAY,alarmIntent);
+
+            if(preferinte_minut<10){
+                settings_alarm_button.setText("Workout alarm set at " + Integer.toString(preferinte_ora) + ":" + "0" + Integer.toString(preferinte_minut));
+            }else{
+                settings_alarm_button.setText("Workout alarm set at " + Integer.toString(preferinte_ora) + ":" + Integer.toString(preferinte_minut));
+            }
         }
 
 
@@ -314,14 +335,11 @@ public class Settings_Fragment extends Fragment {
 
                     TimePickerDialog timePickerDialog =  new TimePickerDialog(getContext(),
                             new TimePickerDialog.OnTimeSetListener() {
+                                @SuppressLint("SetTextI18n")
                                 @Override
                                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                                     preferinte_ora = hourOfDay;
                                     preferinte_minut = minute;
-
-                                    Calendar calendar = Calendar.getInstance();
-                                    calendar.set(0,0,0, preferinte_ora, preferinte_minut);
-
 
                                     Calendar startTime = Calendar.getInstance();
                                     startTime.set(Calendar.HOUR_OF_DAY, preferinte_ora);
@@ -340,7 +358,12 @@ public class Settings_Fragment extends Fragment {
                                     editor.putInt(preferedMinute, preferinte_minut);
                                     editor.apply();
 
-                                    settings_alarm_button.setText("Workout alarm set at " + Integer.toString(preferinte_ora) + ":" + Integer.toString(preferinte_minut));
+                                    if(preferinte_minut<10){
+                                        settings_alarm_button.setText("Workout alarm set at " + Integer.toString(preferinte_ora) + ":" + "0" + Integer.toString(preferinte_minut));
+                                    }else{
+                                        settings_alarm_button.setText("Workout alarm set at " + Integer.toString(preferinte_ora) + ":" + Integer.toString(preferinte_minut));
+                                    }
+
                                     Toast.makeText(getContext(), "Saved Changes", Toast.LENGTH_SHORT).show();
 
                                 }
