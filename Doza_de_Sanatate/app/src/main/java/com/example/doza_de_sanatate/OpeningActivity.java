@@ -137,6 +137,12 @@ public class OpeningActivity extends AppCompatActivity {
                 return false;
             }
             varsta = Integer.parseInt(String.valueOf(input_varsta.getText()));
+
+            if(varsta < 14){
+                Toast.makeText(getApplicationContext(), "You must be at least 14 years old", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
         }catch (Exception e){
             Toast.makeText(getApplicationContext(), "The age must be a number" , Toast.LENGTH_SHORT).show();
             return false;
@@ -148,6 +154,12 @@ public class OpeningActivity extends AppCompatActivity {
                 return false;
             }
             inaltime = Integer.parseInt(String.valueOf(input_inaltime.getText()));
+
+            if(inaltime < 100){
+                Toast.makeText(getApplicationContext(), "You can't be just 1m tall", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
         }catch (Exception e){
             Toast.makeText(getApplicationContext(), "The height must be a number", Toast.LENGTH_SHORT).show();
             return false;
@@ -159,6 +171,12 @@ public class OpeningActivity extends AppCompatActivity {
                 return false;
             }
             greutate = Integer.parseInt(String.valueOf(input_greutate.getText()));
+
+            if(greutate < 30){
+                Toast.makeText(getApplicationContext(), "It's not possible to weight less than 30kg", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
         }catch (Exception e){
             Toast.makeText(getApplicationContext(), "The weight must be a number", Toast.LENGTH_SHORT).show();
             return false;

@@ -75,7 +75,7 @@ public class ListaAntrenamentExercitiuCrossRef {
 
 //                Legs Day
                 new AntrenamentExercitiuCrossRef("Legs Day", "Legs Press"),
-                new AntrenamentExercitiuCrossRef("Legs Day", "Leg Curl"),
+                new AntrenamentExercitiuCrossRef("Legs Day", "Hamstring Curl"),
                 new AntrenamentExercitiuCrossRef("Legs Day", "Jackknife Crunch"),
                 new AntrenamentExercitiuCrossRef("Legs Day", "Leg Extensions"),
                 new AntrenamentExercitiuCrossRef("Legs Day", "Tuck and Crunch"),
@@ -131,7 +131,7 @@ public class ListaAntrenamentExercitiuCrossRef {
 //                Legs Workout
                 new AntrenamentExercitiuCrossRef("Legs Workout", "Legs Press"),
                 new AntrenamentExercitiuCrossRef("Legs Workout", "Leg Extension"),
-                new AntrenamentExercitiuCrossRef("Legs Workout", "Leg Curl"),
+                new AntrenamentExercitiuCrossRef("Legs Workout", "Hamstring Curl"),
                 new AntrenamentExercitiuCrossRef("Legs Workout", "Seated Bench Leg Pull"),
                 new AntrenamentExercitiuCrossRef("Legs Workout", "Lying Leg Lift"),
                 new AntrenamentExercitiuCrossRef("Legs Workout", "Bulgarian Split Squat"),

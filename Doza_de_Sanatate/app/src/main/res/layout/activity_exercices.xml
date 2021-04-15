@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ExercicesActivity"
-    android:id="@+id/adapter_exercice_layout">
+    android:id="@+id/activity_exercise_layout">
 
     <TextView
         android:id="@+id/exercices_you_should"

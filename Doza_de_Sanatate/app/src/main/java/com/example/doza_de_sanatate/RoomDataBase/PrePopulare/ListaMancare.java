@@ -24,6 +24,7 @@ public class ListaMancare {
                 new Mancare("Damson Plum", "picture_adapter_mancare_damson_plum", 76, 18, 1),
                 new Mancare("Kiwi", "picture_adapter_mancare_kiwi", 42, 10.1, 0.8),
                 new Mancare("Orange", "picture_adapter_mancare_orange", 47, 12, 0.9),
+                new Mancare("Grapes", "picture_adapter_mancare_grapes", 69, 18, 0.72),
 
 //                vegetables
                 new Mancare("Potatoes", "picture_adapter_mancare_potato", 93, 20.1, 1.9),

@@ -1,16 +1,21 @@
 package com.example.doza_de_sanatate;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.doza_de_sanatate.Adapters.AdapterExercise;
+import com.example.doza_de_sanatate.Dialogs.DialogWorkout;
 import com.example.doza_de_sanatate.Preferences.Preferinte;
 import com.example.doza_de_sanatate.RoomDataBase.Classes.Exercitiu;
 
@@ -24,12 +29,14 @@ public class ExercicesActivity extends AppCompatActivity {
     private TextView totalExercicesOutput;
     private ListView listViewExercices;
     private AdapterExercise adapterExercise;
+    private ConstraintLayout exerciseLayout;
 
     //    preferinte
     private Preferinte instancePreferinte = Preferinte.getInstance();
 
     private int preferinte_navigation_bar;
     private String preferinte_obiectiv;
+    private String genul;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +47,7 @@ public class ExercicesActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         List<Exercitiu> listaExercitii = (List<Exercitiu>) bundle.getSerializable("listaExercitiiAntrenament");
         listaExercitii.add(null);
-        String genul = (String) bundle.getString("antrenament_gen");
+        genul = (String) bundle.getString("antrenament_gen");
 
         initComponents();
 
@@ -64,6 +71,13 @@ public class ExercicesActivity extends AppCompatActivity {
         adapterExercise = new AdapterExercise(this, R.layout.adapter_exercice_view, listaExercitii, this.getLayoutInflater(), genul);
         listViewExercices.setAdapter(adapterExercise);
 
+        listViewExercices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                openDialog(listaExercitii.get(position));
+            }
+        });
+
     }
 
     void initComponents(){
@@ -71,8 +85,17 @@ public class ExercicesActivity extends AppCompatActivity {
         repsPerSeriesOutput = findViewById(R.id.exercices_reps);
         totalExercicesOutput = findViewById(R.id.exercices_total);
         listViewExercices = findViewById(R.id.exercices_list);
+        exerciseLayout = findViewById(R.id.activity_exercise_layout);
+
+        if(genul == "Femeie"){
+            exerciseLayout.setBackgroundColor(Color.WHITE);
+        }
     }
 
+    void openDialog(Exercitiu exercitiu){
+        DialogWorkout dialogWorkout = new DialogWorkout(exercitiu, genul);
+        dialogWorkout.show(getSupportFragmentManager(), "exercise details dialog");
+    }
 
     @SuppressLint("SetTextI18n")
     void setTextInformation(SharedPreferences preferinte){

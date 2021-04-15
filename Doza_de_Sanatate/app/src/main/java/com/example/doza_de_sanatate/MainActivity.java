@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +17,7 @@ import android.view.View;
 import com.example.doza_de_sanatate.Fragments.Nutrition_Fragment;
 import com.example.doza_de_sanatate.Fragments.Settings_Fragment;
 import com.example.doza_de_sanatate.Fragments.Workout_Fragment;
+import com.example.doza_de_sanatate.Notifications.NotificationWorkout;
 import com.example.doza_de_sanatate.Preferences.Preferinte;
 import com.example.doza_de_sanatate.RoomDataBase.Classes.Mancare;
 import com.example.doza_de_sanatate.RoomDataBase.Services.MancareService;
@@ -22,6 +25,7 @@ import com.example.doza_de_sanatate.asyncTask.Callback;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -148,6 +152,5 @@ public class MainActivity extends AppCompatActivity {
         editor = preferinte.edit();
 
         preferinte_navigation_bar = preferinte.getInt(instancePreferinte.getPreferedNavigationBar(), 1);
-
     }
 }

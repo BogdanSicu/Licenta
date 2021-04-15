@@ -154,29 +154,12 @@ public class Settings_Fragment extends Fragment {
         }
 
         if(preferinte_ora == -1){
-            settings_alarm_button.setText("You did never set your workout alarm");
+            settings_alarm_button.setText("Set alarm");
         }else{
-
-            Intent intent = new Intent(getContext(), NotificationWorkout.class);
-            intent.putExtra("notificationID", 1);
-            PendingIntent alarmIntent = PendingIntent.getBroadcast(getContext(),
-                    0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-            AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
-
-            Calendar startTime = Calendar.getInstance();
-            startTime.set(Calendar.HOUR_OF_DAY, preferinte_ora);
-            startTime.set(Calendar.MINUTE, preferinte_minut);
-            startTime.set(Calendar.SECOND, 0);
-
-            long alarmStartTime = startTime.getTimeInMillis();
-
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
-                    alarmStartTime, AlarmManager.INTERVAL_DAY,alarmIntent);
-
             if(preferinte_minut<10){
-                settings_alarm_button.setText("Workout alarm set at " + Integer.toString(preferinte_ora) + ":" + "0" + Integer.toString(preferinte_minut));
+                settings_alarm_button.setText("Set at " + Integer.toString(preferinte_ora) + ":" + "0" + Integer.toString(preferinte_minut));
             }else{
-                settings_alarm_button.setText("Workout alarm set at " + Integer.toString(preferinte_ora) + ":" + Integer.toString(preferinte_minut));
+                settings_alarm_button.setText("Set at " + Integer.toString(preferinte_ora) + ":" + Integer.toString(preferinte_minut));
             }
         }
 
@@ -186,13 +169,24 @@ public class Settings_Fragment extends Fragment {
     private void initFunctions(){
 
         settings_weight.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 try{
                     if(settings_weight.toString().equals("")){
                         Toast.makeText(getContext(), "The weight must be a number", Toast.LENGTH_SHORT).show();
+                        return;
                     }
+
+                    int greutate = preferinte_greutate;
+
                     preferinte_greutate = Integer.parseInt(String.valueOf(settings_weight.getText()));
+
+                    if(preferinte_greutate < 30){
+                        Toast.makeText(getContext(), "It's not possible to weight less than 30kg", Toast.LENGTH_SHORT).show();
+                        settings_weight.setText(Integer.toString(greutate));
+                        return;
+                    }
 
                     editor.putInt(instancePreferinte.getPreferedWeight(), preferinte_greutate);
 
@@ -214,7 +208,15 @@ public class Settings_Fragment extends Fragment {
                     if(settings_height.toString().equals("")){
                         Toast.makeText(getContext(), "The height must be a number", Toast.LENGTH_SHORT).show();
                     }
+                    int inaltime = preferinte_inaltime;
+
                     preferinte_inaltime = Integer.parseInt(String.valueOf(settings_height.getText()));
+
+                    if(preferinte_inaltime < 100){
+                        Toast.makeText(getContext(), "You can't be just 1m tall", Toast.LENGTH_SHORT).show();
+                        settings_height.setText(Integer.toString(inaltime));
+                        return;
+                    }
 
                     editor.putInt(instancePreferinte.getPreferedHeight(), preferinte_inaltime);
 
@@ -351,9 +353,9 @@ public class Settings_Fragment extends Fragment {
                                     editor.apply();
 
                                     if(preferinte_minut<10){
-                                        settings_alarm_button.setText("Workout alarm set at " + Integer.toString(preferinte_ora) + ":" + "0" + Integer.toString(preferinte_minut));
+                                        settings_alarm_button.setText("Set at " + Integer.toString(preferinte_ora) + ":" + "0" + Integer.toString(preferinte_minut));
                                     }else{
-                                        settings_alarm_button.setText("Workout alarm set at " + Integer.toString(preferinte_ora) + ":" + Integer.toString(preferinte_minut));
+                                        settings_alarm_button.setText("Set at " + Integer.toString(preferinte_ora) + ":" + Integer.toString(preferinte_minut));
                                     }
 
                                     Toast.makeText(getContext(), "Saved Changes", Toast.LENGTH_SHORT).show();

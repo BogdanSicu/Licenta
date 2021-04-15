@@ -26,7 +26,7 @@ import com.example.doza_de_sanatate.asyncTask.AppExecutor;
 import java.util.concurrent.Executor;
 
 @Database(entities = {Mancare.class, Exercitiu.class, Antrenament.class, AntrenamentExercitiuCrossRef.class},
-        exportSchema = false, version = 2)
+        exportSchema = false, version = 3)
 public abstract class LocalDataBaseManager extends RoomDatabase {
 
     private static final String denumireBD = "Fitness at home DB";

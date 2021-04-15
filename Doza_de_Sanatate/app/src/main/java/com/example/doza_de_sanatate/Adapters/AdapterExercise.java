@@ -84,8 +84,4 @@ public class AdapterExercise extends ArrayAdapter<Exercitiu> {
         return convertView;
     }
 
-    @Override
-    public boolean isEnabled(int position) {
-        return false;
-    }
 }
