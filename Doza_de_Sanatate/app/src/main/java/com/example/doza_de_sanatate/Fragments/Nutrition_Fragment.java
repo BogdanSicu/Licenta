@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.doza_de_sanatate.Adapters.AdapterFood;
+import com.example.doza_de_sanatate.Preferences.Preferinte;
 import com.example.doza_de_sanatate.RoomDataBase.Classes.Mancare;
 import com.example.doza_de_sanatate.R;
 import com.example.doza_de_sanatate.RoomDataBase.Services.MancareService;
@@ -39,13 +40,7 @@ public class Nutrition_Fragment extends Fragment {
     private LayoutInflater layoutInflater;
 
 //    preferinte
-        private static final String aSmallPriceToPayForSalvation = "doza_de_sanatate_preferinte";
-        private static final String preferedAge = "doza_de_sanatate_varsta";
-        private static final String preferedHeight = "doza_de_sanatate_inaltime";
-        private static final String preferedWeight = "doza_de_sanatate_greutate";
-        private static final String preferedGender = "doza_de_sanatate_gen";
-        private static final String preferedSport = "doza_de_sanatate_sport";
-        private static final String preferedGoal = "doza_de_sanatate_obiectiv";
+        private Preferinte instancePreferinte = Preferinte.getInstance();
 
         private int preferinte_varsta;
         private int preferinte_inaltime;
@@ -60,7 +55,7 @@ public class Nutrition_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_nutrition_, container, false);
         layoutInflater = inflater;
 
-        SharedPreferences preferinte = getContext().getSharedPreferences(aSmallPriceToPayForSalvation, getContext().MODE_PRIVATE);
+        SharedPreferences preferinte = getContext().getSharedPreferences(instancePreferinte.getaSmallPriceToPayForSalvation(), getContext().MODE_PRIVATE);
         initPreferences(preferinte);
         initComponents(view);
         initText();
@@ -98,12 +93,12 @@ public class Nutrition_Fragment extends Fragment {
     }
 
     void initPreferences(SharedPreferences preferinte){
-        preferinte_varsta = preferinte.getInt(preferedAge, -1);
-        preferinte_inaltime = preferinte.getInt(preferedHeight, -1);
-        preferinte_greutate = preferinte.getInt(preferedWeight, -1);
-        preferinte_gen = preferinte.getString(preferedGender, "");
-        preferinte_sport = preferinte.getString(preferedSport, "");
-        preferinte_obiectiv = preferinte.getString(preferedGoal, "");
+        preferinte_varsta = preferinte.getInt(instancePreferinte.getPreferedAge(), -1);
+        preferinte_inaltime = preferinte.getInt(instancePreferinte.getPreferedHeight(), -1);
+        preferinte_greutate = preferinte.getInt(instancePreferinte.getPreferedWeight(), -1);
+        preferinte_gen = preferinte.getString(instancePreferinte.getPreferedGender(), "");
+        preferinte_sport = preferinte.getString(instancePreferinte.getPreferedSport(), "");
+        preferinte_obiectiv = preferinte.getString(instancePreferinte.getPreferedGoal(), "");
     }
 
     @SuppressLint("SetTextI18n")

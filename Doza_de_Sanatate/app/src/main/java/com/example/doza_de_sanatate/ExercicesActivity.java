@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.doza_de_sanatate.Adapters.AdapterExercise;
+import com.example.doza_de_sanatate.Preferences.Preferinte;
 import com.example.doza_de_sanatate.RoomDataBase.Classes.Exercitiu;
 
 import java.util.List;
@@ -25,9 +26,7 @@ public class ExercicesActivity extends AppCompatActivity {
     private AdapterExercise adapterExercise;
 
     //    preferinte
-    private static final String aSmallPriceToPayForSalvation = "doza_de_sanatate_preferinte";
-    private static final String preferedGoal = "doza_de_sanatate_obiectiv";
-    private static final String preferedNavigationBar = "doza_de_sanatate_navigation_bar";
+    private Preferinte instancePreferinte = Preferinte.getInstance();
 
     private int preferinte_navigation_bar;
     private String preferinte_obiectiv;
@@ -45,8 +44,8 @@ public class ExercicesActivity extends AppCompatActivity {
 
         initComponents();
 
-        SharedPreferences preferinte = getSharedPreferences(aSmallPriceToPayForSalvation, MODE_PRIVATE);
-        preferinte_navigation_bar = preferinte.getInt(preferedNavigationBar, 1);
+        SharedPreferences preferinte = getSharedPreferences(instancePreferinte.getaSmallPriceToPayForSalvation(), MODE_PRIVATE);
+        preferinte_navigation_bar = preferinte.getInt(instancePreferinte.getPreferedNavigationBar(), 1);
         setTextInformation(preferinte);
 
         if(preferinte_navigation_bar == 1){
@@ -78,7 +77,7 @@ public class ExercicesActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     void setTextInformation(SharedPreferences preferinte){
 
-        preferinte_obiectiv = preferinte.getString(preferedGoal, "");
+        preferinte_obiectiv = preferinte.getString(instancePreferinte.getPreferedGoal(), "");
 
         switch (preferinte_obiectiv) {
             case "slabire":
@@ -116,8 +115,5 @@ public class ExercicesActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
     }
-
-
-
 
 }

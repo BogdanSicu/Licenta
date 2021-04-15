@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.doza_de_sanatate.Preferences.Preferinte;
 import com.example.doza_de_sanatate.RoomDataBase.Classes.Mancare;
 import com.example.doza_de_sanatate.RoomDataBase.Services.MancareService;
 import com.example.doza_de_sanatate.asyncTask.Callback;
@@ -35,14 +36,7 @@ public class OpeningActivity extends AppCompatActivity {
 
 
 //    fisier preferinte
-    private static final String aSmallPriceToPayForSalvation = "doza_de_sanatate_preferinte";
-    private static final String preferedAge = "doza_de_sanatate_varsta";
-    private static final String preferedHeight = "doza_de_sanatate_inaltime";
-    private static final String preferedWeight = "doza_de_sanatate_greutate";
-    private static final String preferedGender = "doza_de_sanatate_gen";
-    private static final String preferedSport = "doza_de_sanatate_sport";
-    private static final String preferedGoal = "doza_de_sanatate_obiectiv";
-    private static final String preferedExercises = "doza_de_sanatate_exercitii";
+    private Preferinte instancePreferinte = Preferinte.getInstance();
 
     private int preferinte_varsta;
     private int preferinte_inaltime;
@@ -61,7 +55,7 @@ public class OpeningActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opening);
 
-        SharedPreferences preferinte = getSharedPreferences(aSmallPriceToPayForSalvation, MODE_PRIVATE);
+        SharedPreferences preferinte = getSharedPreferences(instancePreferinte.getaSmallPriceToPayForSalvation(), MODE_PRIVATE);
         initPreferences(preferinte);
 
         mancareService = new MancareService(getApplicationContext());
@@ -109,13 +103,13 @@ public class OpeningActivity extends AppCompatActivity {
     }
 
     void initPreferences(SharedPreferences preferinte){
-        preferinte_varsta = preferinte.getInt(preferedAge, -1);
-        preferinte_inaltime = preferinte.getInt(preferedHeight, -1);
-        preferinte_greutate = preferinte.getInt(preferedWeight, -1);
-        preferinte_gen = preferinte.getString(preferedGender, "");
-        preferinte_sport = preferinte.getString(preferedSport, "");
-        preferinte_obiectiv = preferinte.getString(preferedGoal, "");
-        preferinte_exercitii = preferinte.getString(preferedExercises, "");
+        preferinte_varsta = preferinte.getInt(instancePreferinte.getPreferedAge(), -1);
+        preferinte_inaltime = preferinte.getInt(instancePreferinte.getPreferedHeight(), -1);
+        preferinte_greutate = preferinte.getInt(instancePreferinte.getPreferedWeight(), -1);
+        preferinte_gen = preferinte.getString(instancePreferinte.getPreferedGender(), "");
+        preferinte_sport = preferinte.getString(instancePreferinte.getPreferedSport(), "");
+        preferinte_obiectiv = preferinte.getString(instancePreferinte.getPreferedGoal(), "");
+        preferinte_exercitii = preferinte.getString(instancePreferinte.getPreferedExercises(), "");
 
         if(preferinte_varsta != -1 && preferinte_inaltime != -1
                 && preferinte_greutate!=-1 && !(preferinte_gen.equals(""))
@@ -226,13 +220,13 @@ public class OpeningActivity extends AppCompatActivity {
     void writePreferences(SharedPreferences preferinte){
         SharedPreferences.Editor editor = preferinte.edit();
 
-        editor.putInt(preferedAge, preferinte_varsta);
-        editor.putInt(preferedHeight, preferinte_inaltime);
-        editor.putInt(preferedWeight, preferinte_greutate);
-        editor.putString(preferedGender, preferinte_gen);
-        editor.putString(preferedSport, preferinte_sport);
-        editor.putString(preferedGoal, preferinte_obiectiv);
-        editor.putString(preferedExercises, preferinte_exercitii);
+        editor.putInt(instancePreferinte.getPreferedAge(), preferinte_varsta);
+        editor.putInt(instancePreferinte.getPreferedHeight(), preferinte_inaltime);
+        editor.putInt(instancePreferinte.getPreferedWeight(), preferinte_greutate);
+        editor.putString(instancePreferinte.getPreferedGender(), preferinte_gen);
+        editor.putString(instancePreferinte.getPreferedSport(), preferinte_sport);
+        editor.putString(instancePreferinte.getPreferedGoal(), preferinte_obiectiv);
+        editor.putString(instancePreferinte.getPreferedExercises(), preferinte_exercitii);
 
         //aplicam schimbarile
         editor.apply();

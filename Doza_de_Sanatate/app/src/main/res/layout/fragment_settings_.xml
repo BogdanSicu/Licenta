@@ -230,24 +230,24 @@
                         app:layout_constraintTop_toBottomOf="@id/fragment_settings_alarm_label"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:orientation="horizontal"
-                        android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
+                        android:layout_marginEnd="55dp"
+                        android:paddingEnd="10dp"
+                        android:paddingStart="10dp"
                         >
 
                         <RadioButton
                             android:id="@+id/fragment_settings_alarm_disable"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Disabled"
-                            android:layout_marginEnd="35dp"/>
+                            android:text="Disabled"/>
 
                         <RadioButton
                             android:id="@+id/fragment_settings_alarm_enable"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="You did never set your alarm"/>
+                            android:text="You did never set your workout alarm"
+                            />
                     </RadioGroup>
 
                     <Switch

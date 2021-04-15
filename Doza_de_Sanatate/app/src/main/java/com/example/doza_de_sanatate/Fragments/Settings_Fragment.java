@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.doza_de_sanatate.MainActivity;
 import com.example.doza_de_sanatate.Notifications.NotificationWorkout;
+import com.example.doza_de_sanatate.Preferences.Preferinte;
 import com.example.doza_de_sanatate.R;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -45,17 +46,8 @@ public class Settings_Fragment extends Fragment {
     //    fisier preferinte
     private SharedPreferences preferinte;
     private SharedPreferences.Editor editor;
+    private Preferinte instancePreferinte = Preferinte.getInstance();
 
-    private static final String aSmallPriceToPayForSalvation = "doza_de_sanatate_preferinte";
-    private static final String preferedHeight = "doza_de_sanatate_inaltime";
-    private static final String preferedWeight = "doza_de_sanatate_greutate";
-    private static final String preferedSport = "doza_de_sanatate_sport";
-    private static final String preferedGoal = "doza_de_sanatate_obiectiv";
-    private static final String preferedNavigationBar = "doza_de_sanatate_navigation_bar";
-    private static final String preferedExercises = "doza_de_sanatate_exercitii";
-    private static final String preferedHour = "doza_de_sanatate_ora";
-    private static final String preferedMinute = "doza_de_sanatate_minut";
-    private static final String preferedAlarm = "doza_de_sanatate_alarma";
 
     private int preferinte_inaltime;
     private int preferinte_greutate;
@@ -93,19 +85,19 @@ public class Settings_Fragment extends Fragment {
 
     @SuppressLint("CommitPrefEdits")
     private void initPreferences(){
-         preferinte = getContext().getSharedPreferences(aSmallPriceToPayForSalvation, Context.MODE_PRIVATE);
+         preferinte = getContext().getSharedPreferences(instancePreferinte.getaSmallPriceToPayForSalvation(), Context.MODE_PRIVATE);
          editor = preferinte.edit();
 
-        preferinte_inaltime = preferinte.getInt(preferedHeight, -1);
-        preferinte_greutate = preferinte.getInt(preferedWeight, -1);
-        preferinte_sport = preferinte.getString(preferedSport, "");
-        preferinte_obiectiv = preferinte.getString(preferedGoal, "");
-        preferinte_navigation_bar = preferinte.getInt(preferedNavigationBar, 1);
-        preferinte_exercitii = preferinte.getString(preferedExercises, "");
+        preferinte_inaltime = preferinte.getInt(instancePreferinte.getPreferedHeight(), -1);
+        preferinte_greutate = preferinte.getInt(instancePreferinte.getPreferedWeight(), -1);
+        preferinte_sport = preferinte.getString(instancePreferinte.getPreferedSport(), "");
+        preferinte_obiectiv = preferinte.getString(instancePreferinte.getPreferedGoal(), "");
+        preferinte_navigation_bar = preferinte.getInt(instancePreferinte.getPreferedNavigationBar(), 1);
+        preferinte_exercitii = preferinte.getString(instancePreferinte.getPreferedExercises(), "");
 
-        preferinte_ora =  preferinte.getInt(preferedHour, -1);
-        preferinte_minut =  preferinte.getInt(preferedMinute, -1);
-        preferinte_alarma =  preferinte.getInt(preferedAlarm, -1);
+        preferinte_ora =  preferinte.getInt(instancePreferinte.getPreferedHour(), -1);
+        preferinte_minut =  preferinte.getInt(instancePreferinte.getPreferedMinute(), -1);
+        preferinte_alarma =  preferinte.getInt(instancePreferinte.getPreferedAlarm(), -1);
     }
 
     @SuppressLint("SetTextI18n")
@@ -202,7 +194,7 @@ public class Settings_Fragment extends Fragment {
                     }
                     preferinte_greutate = Integer.parseInt(String.valueOf(settings_weight.getText()));
 
-                    editor.putInt(preferedWeight, preferinte_greutate);
+                    editor.putInt(instancePreferinte.getPreferedWeight(), preferinte_greutate);
 
                     editor.apply();
                     if(!hasFocus){
@@ -224,7 +216,7 @@ public class Settings_Fragment extends Fragment {
                     }
                     preferinte_inaltime = Integer.parseInt(String.valueOf(settings_height.getText()));
 
-                    editor.putInt(preferedHeight, preferinte_inaltime);
+                    editor.putInt(instancePreferinte.getPreferedHeight(), preferinte_inaltime);
 
                     editor.apply();
 
@@ -251,7 +243,7 @@ public class Settings_Fragment extends Fragment {
                     preferinte_sport = "des";
                 }
 
-                editor.putString(preferedSport, preferinte_sport);
+                editor.putString(instancePreferinte.getPreferedSport(), preferinte_sport);
                 editor.apply();
 
                 Toast.makeText(getContext(), "Saved Changes", Toast.LENGTH_SHORT).show();
@@ -271,7 +263,7 @@ public class Settings_Fragment extends Fragment {
                     preferinte_obiectiv = "musculatura";
                 }
 
-                editor.putString(preferedGoal, preferinte_obiectiv);
+                editor.putString(instancePreferinte.getPreferedGoal(), preferinte_obiectiv);
                 editor.apply();
 
                 Toast.makeText(getContext(), "Saved Changes", Toast.LENGTH_SHORT).show();
@@ -292,7 +284,7 @@ public class Settings_Fragment extends Fragment {
 
                 }
 
-                editor.putString(preferedExercises, preferinte_exercitii);
+                editor.putString(instancePreferinte.getPreferedExercises(), preferinte_exercitii);
                 editor.apply();
 
                 Toast.makeText(getContext(), "Saved Changes", Toast.LENGTH_SHORT).show();
@@ -308,7 +300,7 @@ public class Settings_Fragment extends Fragment {
                 }else {
                     preferinte_navigation_bar = 0;
                 }
-                editor.putInt(preferedNavigationBar, preferinte_navigation_bar);
+                editor.putInt(instancePreferinte.getPreferedNavigationBar(), preferinte_navigation_bar);
                 editor.apply();
 
                 Toast.makeText(getContext(), "Saved Changes", Toast.LENGTH_SHORT).show();
@@ -353,9 +345,9 @@ public class Settings_Fragment extends Fragment {
 
                                     preferinte_alarma = 1;
 
-                                    editor.putInt(preferedAlarm, preferinte_alarma);
-                                    editor.putInt(preferedHour, preferinte_ora);
-                                    editor.putInt(preferedMinute, preferinte_minut);
+                                    editor.putInt(instancePreferinte.getPreferedAlarm(), preferinte_alarma);
+                                    editor.putInt(instancePreferinte.getPreferedHour(), preferinte_ora);
+                                    editor.putInt(instancePreferinte.getPreferedMinute(), preferinte_minut);
                                     editor.apply();
 
                                     if(preferinte_minut<10){
@@ -375,7 +367,7 @@ public class Settings_Fragment extends Fragment {
                 }else if(checkedId == R.id.fragment_settings_alarm_disable){
                     alarmManager.cancel(alarmIntent);
                     preferinte_alarma = 0;
-                    editor.putInt(preferedAlarm, preferinte_alarma);
+                    editor.putInt(instancePreferinte.getPreferedAlarm(), preferinte_alarma);
                     editor.apply();
                     Toast.makeText(getContext(), "Saved Changes", Toast.LENGTH_SHORT).show();
                 }

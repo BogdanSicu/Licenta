@@ -15,6 +15,7 @@ import android.view.View;
 import com.example.doza_de_sanatate.Fragments.Nutrition_Fragment;
 import com.example.doza_de_sanatate.Fragments.Settings_Fragment;
 import com.example.doza_de_sanatate.Fragments.Workout_Fragment;
+import com.example.doza_de_sanatate.Preferences.Preferinte;
 import com.example.doza_de_sanatate.RoomDataBase.Classes.Mancare;
 import com.example.doza_de_sanatate.RoomDataBase.Services.MancareService;
 import com.example.doza_de_sanatate.asyncTask.Callback;
@@ -36,10 +37,7 @@ public class MainActivity extends AppCompatActivity {
 //    Preferinte
     SharedPreferences preferinte;
     SharedPreferences.Editor editor;
-
-    private static final String aSmallPriceToPayForSalvation = "doza_de_sanatate_preferinte";
-    private static final String preferedNavigationBar = "doza_de_sanatate_navigation_bar";
-
+    private Preferinte instancePreferinte = Preferinte.getInstance();
     private int preferinte_navigation_bar;
 
 
@@ -146,10 +144,10 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("CommitPrefEdits")
     void initPreferences(){
-        preferinte = getApplicationContext().getSharedPreferences(aSmallPriceToPayForSalvation, Context.MODE_PRIVATE);
+        preferinte = getApplicationContext().getSharedPreferences(instancePreferinte.getaSmallPriceToPayForSalvation(), Context.MODE_PRIVATE);
         editor = preferinte.edit();
 
-        preferinte_navigation_bar = preferinte.getInt(preferedNavigationBar, 1);
+        preferinte_navigation_bar = preferinte.getInt(instancePreferinte.getPreferedNavigationBar(), 1);
 
     }
 }

@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.doza_de_sanatate.Adapters.AdapterWorkout;
+import com.example.doza_de_sanatate.Preferences.Preferinte;
 import com.example.doza_de_sanatate.RoomDataBase.Classes.AntrenamentCuExercitii;
 import com.example.doza_de_sanatate.ExercicesActivity;
 import com.example.doza_de_sanatate.R;
@@ -43,9 +44,8 @@ public class Workout_Fragment extends Fragment {
 //    fisier preferinte
     private SharedPreferences preferinte;
     private SharedPreferences.Editor editor;
+    private Preferinte instancePreferinte = Preferinte.getInstance();
 
-    private static final String aSmallPriceToPayForSalvation = "doza_de_sanatate_preferinte";
-    private static final String preferedExercises = "doza_de_sanatate_exercitii";
 
     private String preferinte_exercitii;
 
@@ -126,9 +126,9 @@ public class Workout_Fragment extends Fragment {
         workout_menu = view.findViewById(R.id.fragment_workout_menu);
         antrenamenteCuExercitiiService = new AntrenamenteCuExercitiiService(getContext());
 
-        preferinte = getContext().getSharedPreferences(aSmallPriceToPayForSalvation, Context.MODE_PRIVATE);
+        preferinte = getContext().getSharedPreferences(instancePreferinte.getaSmallPriceToPayForSalvation(), Context.MODE_PRIVATE);
         editor = preferinte.edit();
-        preferinte_exercitii = preferinte.getString(preferedExercises, "");
+        preferinte_exercitii = preferinte.getString(instancePreferinte.getPreferedExercises(), "");
     }
 
     private Callback<List<AntrenamentCuExercitii>> getAllAntrenamenteCuExercitiiCallBack(){
