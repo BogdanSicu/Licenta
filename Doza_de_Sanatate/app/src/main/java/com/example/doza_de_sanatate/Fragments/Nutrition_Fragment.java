@@ -146,9 +146,9 @@ public class Nutrition_Fragment extends Fragment {
 
         DecimalFormat form = new DecimalFormat("0.00");
 
-        nutritionKcal.setText("You need " + form.format(metabolicRate) +" kilocalories everyday");
-        nutritionCarb.setText("You need " + form.format(carbsNeeded) +" grams of carbohydrates everyday");
-        nutritionProtein.setText("You need " + form.format(LBM)  +" grams of protein everyday");
+        nutritionKcal.setText("You need around " + form.format(metabolicRate) +" kilocalories everyday");
+        nutritionCarb.setText("You need around " + form.format(carbsNeeded) +" grams of carbohydrates everyday");
+        nutritionProtein.setText("You need around " + form.format(LBM)  +" grams of protein everyday");
     }
 
 
