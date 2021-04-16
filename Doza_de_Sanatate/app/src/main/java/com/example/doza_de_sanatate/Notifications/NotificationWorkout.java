@@ -20,7 +20,7 @@ public class NotificationWorkout extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         int notifcationID = intent.getIntExtra("notificationID", 0);
-        String message = "Get up, it is the time for your workout";
+        String message = "Get up, it's the time for your workout";
 
         Intent mainIntent = new Intent(context, MainActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(
