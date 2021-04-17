@@ -24,6 +24,7 @@ import java.util.List;
 public class ExercicesActivity extends AppCompatActivity {
     private View decorView;
 
+    private TextView youShouldTXT;
     private TextView seriesPerExerciceOutput;
     private TextView repsPerSeriesOutput;
     private TextView totalExercicesOutput;
@@ -81,14 +82,19 @@ public class ExercicesActivity extends AppCompatActivity {
     }
 
     void initComponents(){
+        youShouldTXT = findViewById(R.id.exercices_you_should);
         seriesPerExerciceOutput = findViewById(R.id.exercices_series);
         repsPerSeriesOutput = findViewById(R.id.exercices_reps);
         totalExercicesOutput = findViewById(R.id.exercices_total);
         listViewExercices = findViewById(R.id.exercices_list);
         exerciseLayout = findViewById(R.id.activity_exercise_layout);
 
-        if(genul == "Femeie"){
+        if(genul.equals("Femeie")){
+            youShouldTXT.setTextColor(Color.BLACK);
             exerciseLayout.setBackgroundColor(Color.WHITE);
+            seriesPerExerciceOutput.setTextColor(Color.BLACK);
+            repsPerSeriesOutput.setTextColor(Color.BLACK);
+            totalExercicesOutput.setTextColor(Color.BLACK);
         }
     }
 

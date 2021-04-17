@@ -66,6 +66,7 @@ public class AdapterExercise extends ArrayAdapter<Exercitiu> {
              }
              else if(this.gen.equals("Femeie")){
                  holder.adapterExerciceLayout.setBackgroundColor(Color.WHITE);
+                 holder.adapterExerciceTextView.setTextColor(Color.BLACK);
                  if(!getItem(position).getIconitaFemeie().equals("")){
                      pozaGasita = myContext.getResources().getIdentifier(getItem(position).getIconitaFemeie(), "drawable", myContext.getPackageName());
                  }else{
@@ -78,7 +79,6 @@ public class AdapterExercise extends ArrayAdapter<Exercitiu> {
         else{
             holder.adapterExerciceTextView.setVisibility(View.INVISIBLE);
             holder.adapterExerciceImageView.setVisibility(View.INVISIBLE);
-            holder.adapterExerciceLayout.setMinHeight(70);
         }
 
         return convertView;
