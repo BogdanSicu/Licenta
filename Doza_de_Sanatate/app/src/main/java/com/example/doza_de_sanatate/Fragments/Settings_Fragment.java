@@ -149,7 +149,7 @@ public class Settings_Fragment extends Fragment {
 
         if(preferinte_alarma == 1){
             settings_alarm.check(R.id.fragment_settings_alarm_enable);
-        }else if(preferinte_alarma == 0){
+        }else{
             settings_alarm.check(R.id.fragment_settings_alarm_disable);
         }
 
